@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphic Design Portfolio | Urooj Ansari</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{--bg:#0b0b14;--panel:#151526;--text:#eaeaf5;--muted:#9a9ab5;--a:#7c5cff;--b:#ff4f9a;--c:#00d4ff}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ---------- NAVBAR ---------- */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(11,11,20,.8);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);animation:slideDown .8s ease}
+.nav{max-width:1250px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.logo{font-size:1.4rem;font-weight:800;letter-spacing:.5px}
+.logo span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav ul{display:flex;gap:3px;list-style:none}
+.nav ul a{position:relative;padding:8px 13px;border-radius:30px;font-weight:600;font-size:.88rem;color:var(--muted);transition:.3s;white-space:nowrap}
+.nav ul a:hover,.nav ul a.active{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 6px 20px rgba(124,92,255,.35)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:32px;height:24px;position:relative}
+.burger span{position:absolute;left:0;width:100%;height:3px;background:#fff;border-radius:3px;transition:.3s}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:20px}
+.burger.open span:nth-child(1){top:10px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:10px;transform:rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 20%,rgba(124,92,255,.25),transparent 45%),radial-gradient(circle at 80% 70%,rgba(255,79,154,.22),transparent 45%),var(--bg)}
+.shape{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;animation:float 8s ease-in-out infinite}
+.s1{width:90px;height:90px;background:linear-gradient(135deg,var(--a),var(--c));top:18%;left:10%}
+.s2{width:60px;height:60px;background:linear-gradient(135deg,var(--b),#ffb347);top:68%;left:18%;animation-delay:-2s}
+.s3{width:120px;height:120px;border:4px solid var(--c);background:transparent;top:22%;right:12%;animation-delay:-4s}
+.s4{width:70px;height:70px;border-radius:16px;background:linear-gradient(135deg,var(--a),var(--b));bottom:14%;right:16%;animation:spin 12s linear infinite}
+.hero-content{position:relative;z-index:2;max-width:820px}
+.tag{display:inline-block;padding:6px 18px;border:1px solid rgba(255,255,255,.2);border-radius:30px;font-size:.85rem;color:var(--c);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;animation:fadeUp 1s ease both}
+.hero h1{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.15;font-weight:800;animation:fadeUp 1s .2s ease both}
+.hero h1 span{background:linear-gradient(90deg,var(--a),var(--b),var(--c));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.typed{margin-top:14px;font-size:clamp(1.1rem,2.6vw,1.6rem);color:var(--c);min-height:2.2rem;font-weight:600;animation:fadeUp 1s .4s ease both}
+.typed::after{content:"|";margin-left:3px;animation:blink 1s infinite}
+.hero p.intro{margin:18px auto 0;max-width:640px;color:var(--muted);font-size:1.05rem;animation:fadeUp 1s .6s ease both}
+.btns{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .8s ease both}
+.btn{padding:13px 30px;border-radius:40px;font-weight:700;transition:.3s;display:inline-block}
+.btn.primary{background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 10px 30px rgba(124,92,255,.4)}
+.btn.primary:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(255,79,154,.45)}
+.btn.ghost{border:2px solid rgba(255,255,255,.25)}
+.btn.ghost:hover{border-color:var(--c);color:var(--c);transform:translateY(-4px)}
+.stats{margin-top:46px;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s 1s ease both}
+.stats div b{display:block;font-size:2rem;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats div small{color:var(--muted)}
+
+/* ---------- SECTIONS ---------- */
+section{max-width:1200px;margin:auto;padding:80px 24px}
+.section-title{text-align:center;margin-bottom:46px}
+.section-title h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.section-title h2 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-title p{color:var(--muted);margin-top:8px}
+
+/* category quick menu */
+.cat-menu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:50px}
+.cat-menu a{padding:8px 18px;border-radius:30px;background:var(--panel);border:1px solid rgba(255,255,255,.08);font-size:.9rem;color:var(--muted);transition:.3s}
+.cat-menu a:hover{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));transform:translateY(-3px)}
+
+.category{margin-bottom:70px;scroll-margin-top:90px}
+.category-heading{margin-bottom:22px;border-left:5px solid var(--a);padding-left:16px}
+.category-heading h3{font-size:1.6rem}
+.category-heading p{color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.badge{padding:3px 12px;border-radius:20px;font-size:.78rem;font-weight:700;background:rgba(0,212,255,.12);color:var(--c);border:1px solid rgba(0,212,255,.3)}
+.badge.mode{background:rgba(255,79,154,.12);color:var(--b);border-color:rgba(255,79,154,.35)}
+.badge.dpi{background:rgba(124,92,255,.15);color:#a794ff;border-color:rgba(124,92,255,.4)}
+.badge.sw{background:rgba(255,255,255,.07);color:var(--text);border-color:rgba(255,255,255,.2)}
+.spec-note{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--panel);border:1px dashed rgba(255,255,255,.2);font-size:.88rem;color:var(--muted);max-width:760px}
+.spec-note b{color:var(--text)}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--min,220px),1fr));gap:18px}
+.gallery-item{background:var(--panel);border-radius:14px;overflow:hidden;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.06);transition:.4s}
+.gallery-item img,.gallery-item .ph{width:100%;aspect-ratio:var(--ar,4/3);height:auto;object-fit:cover;display:block;transition:.5s}
+.gallery-item .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--muted);font-size:.85rem;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 12px,transparent 12px 24px)}
+.gallery-item .ph b{font-size:1.6rem;color:var(--a)}
+.gallery-item:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(124,92,255,.3);border-color:var(--a)}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item{overflow:hidden}
+.image-name{padding:10px 14px;font-size:.9rem;font-weight:600;text-align:center}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* ---------- PROJECT GUIDELINES ---------- */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.g-card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;transition:.4s}
+.g-card:hover{transform:translateY(-6px);border-color:var(--a);box-shadow:0 16px 36px rgba(124,92,255,.25)}
+.g-card h4{font-size:1.15rem;margin-bottom:12px;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.g-card ul{list-style:none}
+.g-card li{padding:7px 0 7px 26px;position:relative;color:var(--muted);font-size:.93rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.g-card li:last-child{border-bottom:0}
+.g-card li::before{content:"✔";position:absolute;left:0;color:var(--c)}
+.g-card li b{color:var(--text)}
+.urdu{direction:rtl;text-align:right;margin-top:14px;padding:12px 16px;border-radius:10px;background:rgba(255,79,154,.08);border:1px solid rgba(255,79,154,.25);color:var(--muted);font-size:.95rem}
+
+/* ---------- SIZE GUIDE ---------- */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+table{width:100%;border-collapse:collapse;min-width:620px;background:var(--panel)}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
+th{background:linear-gradient(90deg,var(--a),var(--b));color:#fff}
+tr:hover td{background:rgba(124,92,255,.1)}
+td.grp{background:rgba(124,92,255,.12);font-weight:700;color:var(--c)}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.lightbox.open{display:flex;animation:fadeIn .3s}
+.lightbox img{max-width:95%;max-height:88vh;border-radius:10px;animation:zoom .35s}
+.lightbox .close{position:absolute;top:18px;right:26px;font-size:2.4rem;cursor:pointer;color:#fff}
+
+/* ---------- FOOTER ---------- */
+footer{text-align:center;padding:36px 20px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+footer span{color:var(--b);font-weight:700}
+.top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;z-index:900}
+.top.show{opacity:1;pointer-events:auto}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes blink{50%{opacity:0}}
+@keyframes zoom{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+ .burger{display:block}
+ .nav ul{position:absolute;top:100%;left:0;width:100%;flex-direction:column;background:rgba(11,11,20,.97);padding:10px 24px 20px;gap:4px;max-height:0;overflow:hidden;opacity:0;transition:.4s}
+ .nav ul.open{max-height:520px;opacity:1}
+ .nav ul a{display:block}
+ .gallery{grid-template-columns:repeat(2,1fr)!important;gap:12px}
+ .gallery.wide{grid-template-columns:1fr!important}
+ .shape{opacity:.3}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header>
+ <div class="nav">
+  <a href="index.html" class="logo">Urooj <span>Ansari</span></a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul id="menu">
+   <li><a href="index.html">Home</a></li>
+   <li><a href="about.html">About</a></li>
+   <li><a href="graphics.html" class="active">Graphics</a></li>
+   <li><a href="video-editing.html">Video Editing</a></li>
+   <li><a href="web-development.html">Web Development</a></li>
+   <li><a href="photography.html">Photography</a></li>
+   <li><a href="contact.html">Contact</a></li>
+  </ul>
+ </div>
+</header>
+
+<!-- HERO / INTRO -->
+<div class="hero" id="top">
+ <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div><div class="shape s4"></div>
+ <div class="hero-content">
+  <div class="tag">Graphic Design Portfolio</div>
+  <h1>I Turn Ideas Into <span>Creative Designs</span></h1>
+  <div class="typed" id="typed"></div>
+  <p class="intro">Graphic designing is the art of telling a story through colors, typography and imagery. I create digital branding, brochures, flyers, social media posts, banners, ads and more that make brands look professional and stand out.</p>
+  <div class="btns">
+   <a href="#gallery" class="btn primary">View My Work</a>
+   <a href="contactme.html" class="btn ghost">Hire Me</a>
+  </div>
+  <div class="stats">
+   <div><b data-count="150">0</b><small>Designs Created</small></div>
+   <div><b data-count="22">0</b><small>Categories</small></div>
+   <div><b data-count="50">0</b><small>Happy Clients</small></div>
+  </div>
+ </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+ <div class="section-title reveal">
+  <h2>My <span>Design Work</span></h2>
+  <p>Browse my projects by category, each with its exact size, color mode and DPI</p>
+ </div>
+ <div class="cat-menu" id="catMenu"></div>
+ <div id="categories"></div>
+</section>
+
+<!-- PROJECT GUIDELINES -->
+<section>
+ <div class="section-title reveal">
+  <h2>Project <span>Guidelines</span></h2>
+  <p>Important notes for design and submission</p>
+ </div>
+ <div class="guide-grid">
+  <div class="g-card reveal">
+   <h4>Recommended Software</h4>
+   <ul>
+    <li><b>Digital Branding:</b> Adobe Photoshop</li>
+    <li><b>Brochure &amp; Flyer:</b> Adobe Illustrator</li>
+    <li><b>YouTube, Facebook &amp; Social Media Ads:</b> Any software</li>
+   </ul>
+  </div>
+  <div class="g-card reveal">
+   <h4>Work Process</h4>
+   <ul>
+    <li>First design all the given tasks, then create the mockups.</li>
+    <li>In Social Media Ads, design 2 separate designs of each size.</li>
+    <li>For a new product (other than the midterm project), design Logo &amp; Stationery as well.</li>
+    <li>Detailed guidelines are shared in the WhatsApp group.</li>
+   </ul>
+  </div>
+  <div class="g-card reveal">
+   <h4>Submission</h4>
+   <ul>
+    <li>Submit the original files of the project with JPEG files.</li>
+    <li>Also submit the Mockup JPEG files.</li>
+    <li>Put all files in one folder and submit it as a zip file.</li>
+   </ul>
+  </div>
+ </div>
+ <div class="urdu reveal">نوٹ: سائز کو سمجھنے اور ڈیزائن کو بنانے کے لیے (YouTube اور Facebook Banner کی) سیمپل تصاویر منسلک ہیں۔</div>
+</section>
+
+<!-- DESIGN SIZES -->
+<section class="size-guide">
+ <div class="section-title reveal">
+  <h2>Graphic Design <span>Size Guide</span></h2>
+  <p>Standard sizes, color modes and DPI for each design category</p>
+ </div>
+ <div class="table-wrap reveal">
+  <table>
+   <tr><th>Design Category</th><th>Size</th><th>Color Mode</th><th>DPI</th></tr>
+
+   <tr><td class="grp" colspan="4">Digital Branding</td></tr>
+   <tr><td>Standee</td><td>2 × 5 feet / 24 × 60 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Billboard</td><td>10 × 5 feet / 120 × 60 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Sign Board / Poster</td><td>2 × 3 feet / 24 × 36 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Bus Branding</td><td>12 × 2.5 feet / 144 × 30 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Car Branding</td><td>2 × 1.5 feet / 24 × 18 inches</td><td>CMYK</td><td>100</td></tr>
+
+   <tr><td class="grp" colspan="4">Print Design</td></tr>
+   <tr><td>Brochure (Tri Fold, Front &amp; Back)</td><td>17 × 11 inches</td><td>CMYK</td><td>300</td></tr>
+   <tr><td>Flyer (Front Design Only)</td><td>5.5 × 8.5 inches</td><td>CMYK</td><td>300</td></tr>
+
+   <tr><td class="grp" colspan="4">Social Media &amp; Banners</td></tr>
+   <tr><td>Social Media Post</td><td>1080 × 1350 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>YouTube Banner (Frame / File Size)</td><td>2560 × 1440 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>YouTube Banner (All Devices Safe Zone)</td><td>1235 × 338 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>YouTube Banner (Desktop Size)</td><td>2560 × 338 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>Facebook Banner</td><td>851 × 315 px</td><td>RGB</td><td>72</td></tr>
+
+   <tr><td class="grp" colspan="4">Social Media Ads (2 separate designs of each size)</td></tr>
+   <tr><td>Ads Square</td><td>1080 × 1080 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>Ads Portrait (same design as square)</td><td>1080 × 1350 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>Ads Landscape (same design as square)</td><td>1080 × 566 px</td><td>RGB</td><td>72</td></tr>
+
+   <tr><td class="grp" colspan="4">Other Designs</td></tr>
+   <tr><td>Logo</td><td>Custom / Square</td><td>—</td><td>300 / Vector</td></tr>
+   <tr><td>Instagram Story</td><td>1080 × 1920 px</td><td>—</td><td>72–150</td></tr>
+   <tr><td>Facebook Post</td><td>1200 × 1200 px</td><td>—</td><td>72</td></tr>
+   <tr><td>YouTube Thumbnail</td><td>1280 × 720 px</td><td>—</td><td>72</td></tr>
+   <tr><td>Business Card</td><td>3.5 × 2 inches</td><td>—</td><td>300</td></tr>
+   <tr><td>Packaging</td><td>Custom dimensions</td><td>—</td><td>300</td></tr>
+   <tr><td>Web Banner</td><td>1920 × 600 px</td><td>—</td><td>72</td></tr>
+   <tr><td>Invitation Card</td><td>5 × 7 inches</td><td>—</td><td>300</td></tr>
+   <tr><td>Menu Design</td><td>8.5 × 11 inches</td><td>—</td><td>300</td></tr>
+  </table>
+ </div>
+</section>
+
+<footer>
+ <p>© 2026 <span>Urooj Ansari</span> | Graphic Design Portfolio</p>
+ <p>Creativity • Design • Innovation</p>
+</footer>
+
+<div class="lightbox" id="lightbox"><span class="close" id="closeLb">&times;</span><img id="lbImg" alt=""></div>
+<a href="#top" class="top" id="toTop">↑</a>
+
+<script>
+/* =====================================================
+   CATEGORIES — yahan se sab kuch change kar sakte hain
+   -----------------------------------------------------
+   id     = section ka naam (menu link ke liye)
+   title  = heading            desc = chhoti description
+   prefix = image ke naam ki shuruaat (images/prefix1.jpg ...)
+   label  = image ke neeche dikhne wala naam
+   w, h   = design ka ratio (box usi shape me banta hai)
+   min    = ek image ki minimum width (px)
+   count  = kitni images (default 10)
+   size / mode / dpi / sw = badges (size, color mode, DPI, software)
+   note   = extra information box (optional)
+   ===================================================== */
+const cats = [
+ /* ---- DIGITAL BRANDING ---- */
+ {id:"standee",  title:"01. Digital Branding: Standee",        desc:"Standee designs for events and shops",
+  prefix:"standee", label:"Standee", w:24,h:60, min:170, size:"2 × 5 feet / 24 × 60 inches", mode:"CMYK", dpi:"100", sw:"Photoshop"},
+ {id:"billboard",title:"02. Digital Branding: Billboard",      desc:"Outdoor advertising and large-format designs",
+  prefix:"billboard", label:"Billboard", w:2,h:1, min:380, wide:true, size:"10 × 5 feet / 120 × 60 inches", mode:"CMYK", dpi:"100", sw:"Photoshop"},
+ {id:"poster",   title:"03. Digital Branding: Sign Board / Poster", desc:"Creative promotional and advertising posters",
+  prefix:"poster", label:"Poster", w:2,h:3, min:220, size:"2 × 3 feet / 24 × 36 inches", mode:"CMYK", dpi:"100", sw:"Photoshop"},
+ {id:"bus",      title:"04. Digital Branding: Bus Branding",   desc:"Full bus wrap and side branding",
+  prefix:"bus", label:"Bus Branding", w:144,h:30, min:420, wide:true, size:"12 × 2.5 feet / 144 × 30 inches", mode:"CMYK", dpi:"100", sw:"Photoshop"},
+ {id:"car",      title:"05. Digital Branding: Car Branding",   desc:"Car door and vehicle branding",
+  prefix:"car", label:"Car Branding", w:4,h:3, min:260, size:"2 × 1.5 feet / 24 × 18 inches", mode:"CMYK", dpi:"100", sw:"Photoshop"},
+
+ /* ---- PRINT ---- */
+ {id:"brochure", title:"06. Brochure Design (Tri Fold)",       desc:"Tri fold front & back design",
+  prefix:"brochure", label:"Brochure", w:17,h:11, min:340, size:"17 × 11 inches", mode:"CMYK", dpi:"300", sw:"Illustrator"},
+ {id:"flyer",    title:"07. Flyer Design",                     desc:"Front design only",
+  prefix:"flyer", label:"Flyer", w:5.5,h:8.5, min:220, size:"5.5 × 8.5 inches", mode:"CMYK", dpi:"300", sw:"Illustrator"},
+
+ /* ---- SOCIAL MEDIA & BANNERS ---- */
+ {id:"post",     title:"08. Social Media Post Design",         desc:"Instagram and Facebook post designs",
+  prefix:"instagram", label:"Post", w:1080,h:1350, min:220, size:"1080 × 1350 px", mode:"RGB", dpi:"72", sw:"Any"},
+ {id:"ytbanner", title:"09. YouTube Banner Design",            desc:"Channel art for all devices",
+  prefix:"youtube", label:"YouTube Banner", w:16,h:9, min:340, size:"Frame / File: 2560 × 1440 px", mode:"RGB", dpi:"72", sw:"Any",
+  note:"<b>Frame / File Size:</b> 2560 × 1440 px<br><b>All Devices Size / Safe Zone:</b> 1235 × 338 px<br><b>Desktop Size:</b> 2560 × 338 px"},
+ {id:"fbbanner", title:"10. Facebook Banner Design",           desc:"Facebook cover designs",
+  prefix:"facebook", label:"Facebook Banner", w:851,h:315, min:380, wide:true, size:"851 × 315 px", mode:"RGB", dpi:"72", sw:"Any"},
+
+ /* ---- SOCIAL MEDIA ADS ---- */
+ {id:"adsquare", title:"11. Social Media Ads: Square",         desc:"2 separate square ad designs",
+  prefix:"adsquare", label:"Square Ad", w:1,h:1, count:2, min:260, size:"1080 × 1080 px", mode:"RGB", dpi:"72", sw:"Any"},
+ {id:"adportrait",title:"12. Social Media Ads: Portrait",      desc:"Same designs as the square ads, in portrait size",
+  prefix:"adportrait", label:"Portrait Ad", w:1080,h:1350, count:2, min:240, size:"1080 × 1350 px", mode:"RGB", dpi:"72", sw:"Any"},
+ {id:"adlandscape",title:"13. Social Media Ads: Landscape",    desc:"Same designs as the square ads, in landscape size",
+  prefix:"adlandscape", label:"Landscape Ad", w:1080,h:566, count:2, min:380, wide:true, size:"1080 × 566 px", mode:"RGB", dpi:"72", sw:"Any"},
+
+ /* ---- OTHER DESIGNS ---- */
+ {id:"logo",       title:"14. Logo Design",              desc:"Modern and creative brand logos",
+  prefix:"logo", label:"Logo", w:1,h:1, min:220, size:"Custom / Square", dpi:"300 / Vector"},
+ {id:"card",       title:"15. Business Card Design",     desc:"Professional visiting cards",
+  prefix:"card", label:"Business Card", w:7,h:4, min:260, size:"3.5 × 2 inches", dpi:"300"},
+ {id:"packaging",  title:"16. Packaging Design",         desc:"Product and box packaging designs",
+  prefix:"packaging", label:"Packaging", w:4,h:3, min:240, size:"Custom dimensions", dpi:"300"},
+ {id:"banner",     title:"17. Web Banner Design",        desc:"Web banners and promotional designs",
+  prefix:"banner", label:"Banner", w:16,h:5, min:380, wide:true, size:"1920 × 600 px", dpi:"72"},
+ {id:"thumbnail",  title:"18. YouTube Thumbnail Design", desc:"Creative video thumbnails and cover designs",
+  prefix:"thumbnail", label:"Thumbnail", w:16,h:9, min:300, size:"1280 × 720 px", dpi:"72"},
+ {id:"stationery", title:"19. Stationery Design",        desc:"Letterheads, envelopes, folders and brand stationery",
+  prefix:"stationery", label:"Stationery", w:4,h:3, min:240},
+ {id:"menu",       title:"20. Menu Design",              desc:"Restaurant, cafe and food menu designs",
+  prefix:"menu", label:"Menu", w:8.5,h:11, min:220, size:"8.5 × 11 inches", dpi:"300"},
+ {id:"invitation", title:"21. Invitation Card Design",   desc:"Wedding, event and special occasion invitations",
+  prefix:"invitation", label:"Invitation", w:5,h:7, min:220, size:"5 × 7 inches", dpi:"300"},
+ {id:"photo",      title:"22. Photo Editing & Manipulation", desc:"Retouching, creative editing and image manipulation",
+  prefix:"photo", label:"Photo Editing", w:4,h:3, min:240}
+];
+const PER = 10; // default: har category me kitni images
+
+const wrap = document.getElementById('categories');
+const catMenu = document.getElementById('catMenu');
+cats.forEach(c=>{
+  const total = c.count || PER;
+  let items='';
+  for(let i=1;i<=total;i++){
+    const n=String(i).padStart(2,'0');
+    items+=`<div class="gallery-item" style="--ar:${c.w}/${c.h}"><img loading="lazy" src="images/${c.prefix}${i}.jpg" alt="${c.label} ${i}" onerror="this.outerHTML='<div class=ph><b>+</b>Add design ${n}</div>'"><div class="image-name">${c.label} ${n}</div></div>`;
+  }
+  let badges='';
+  if(c.size) badges+=`<span class="badge">📐 ${c.size}</span>`;
+  if(c.mode) badges+=`<span class="badge mode">🎨 ${c.mode}</span>`;
+  if(c.dpi)  badges+=`<span class="badge dpi">DPI: ${c.dpi}</span>`;
+  if(c.sw)   badges+=`<span class="badge sw">🖥 ${c.sw}</span>`;
+  const note=c.note?`<div class="spec-note">${c.note}</div>`:'';
+  wrap.insertAdjacentHTML('beforeend',
+   `<div class="category reveal" id="${c.id}">
+     <div class="category-heading"><h3>${c.title}</h3><p>${c.desc}</p><div class="badges">${badges}</div>${note}</div>
+     <div class="gallery ${c.wide?'wide':''}" style="--min:${c.min||220}px">${items}</div>
+    </div>`);
+  catMenu.insertAdjacentHTML('beforeend',`<a href="#${c.id}">${c.title.replace(/^\d+\.\s*/,'')}</a>`);
+});
+
+/* ===== Mobile menu ===== */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+
+/* ===== Typing effect ===== */
+const words=["Digital Branding","Brochures & Flyers","Social Media Posts","YouTube & Facebook Banners","Social Media Ads"];
+let w=0,ch=0,del=false;const typed=document.getElementById('typed');
+(function type(){
+  const word=words[w];
+  typed.textContent=del?word.slice(0,--ch):word.slice(0,++ch);
+  let speed=del?50:110;
+  if(!del&&ch===word.length){speed=1500;del=true}
+  else if(del&&ch===0){del=false;w=(w+1)%words.length;speed=400}
+  setTimeout(type,speed);
+})();
+
+/* ===== Scroll reveal ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== Counter ===== */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const t=+el.dataset.count;let n=0;const step=Math.max(1,Math.ceil(t/60));
+  const timer=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(timer)}el.textContent=n+'+'},30);
+});
+
+/* ===== Lightbox ===== */
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+document.addEventListener('click',e=>{
+  const item=e.target.closest('.gallery-item');
+  const img=item&&item.querySelector('img');
+  if(img){lbImg.src=img.src;lb.classList.add('open')}
+});
+lb.addEventListener('click',e=>{if(e.target!==lbImg)lb.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+
+/* ===== Back to top ===== */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>500));
+</script>
+</body>
+</html>

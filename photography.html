@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography Portfolio | Urooj Ansari</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{--bg:#0b0b14;--panel:#151526;--text:#eaeaf5;--muted:#9a9ab5;--a:#7c5cff;--b:#ff4f9a;--c:#00d4ff}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ---------- NAVBAR ---------- */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(11,11,20,.8);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);animation:slideDown .8s ease}
+.nav{max-width:1250px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.logo{font-size:1.4rem;font-weight:800}
+.logo span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav ul{display:flex;gap:3px;list-style:none}
+.nav ul a{padding:8px 13px;border-radius:30px;font-weight:600;font-size:.88rem;color:var(--muted);transition:.3s;white-space:nowrap}
+.nav ul a:hover,.nav ul a.active{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 6px 20px rgba(124,92,255,.35)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:32px;height:24px;position:relative}
+.burger span{position:absolute;left:0;width:100%;height:3px;background:#fff;border-radius:3px;transition:.3s}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:20px}
+.burger.open span:nth-child(1){top:10px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:10px;transform:rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(circle at 15% 25%,rgba(255,79,154,.22),transparent 45%),radial-gradient(circle at 85% 75%,rgba(124,92,255,.25),transparent 45%),var(--bg)}
+.hero-inner{max-width:1200px;margin:auto;width:100%;display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center;position:relative;z-index:2}
+.tag{display:inline-block;padding:6px 18px;border:1px solid rgba(255,255,255,.2);border-radius:30px;font-size:.85rem;color:var(--c);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;animation:fadeUp 1s ease both}
+.hero h1{font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.15;font-weight:800;animation:fadeUp 1s .2s ease both}
+.hero h1 span{background:linear-gradient(90deg,var(--a),var(--b),var(--c));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.typed{margin-top:14px;font-size:clamp(1.1rem,2.4vw,1.5rem);color:var(--c);min-height:2.2rem;font-weight:600;animation:fadeUp 1s .4s ease both}
+.typed::after{content:"|";margin-left:3px;animation:blink 1s infinite}
+.intro{margin-top:16px;color:var(--muted);font-size:1.05rem;max-width:560px;animation:fadeUp 1s .6s ease both}
+.btns{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 1s .8s ease both}
+.btn{padding:13px 28px;border-radius:40px;font-weight:700;transition:.3s;display:inline-block}
+.btn.primary{background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 10px 30px rgba(124,92,255,.4)}
+.btn.primary:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(255,79,154,.45)}
+.btn.ghost{border:2px solid rgba(255,255,255,.25)}
+.btn.ghost:hover{border-color:var(--c);color:var(--c);transform:translateY(-4px)}
+.stats{margin-top:40px;display:flex;gap:36px;flex-wrap:wrap;animation:fadeUp 1s 1s ease both}
+.stats b{display:block;font-size:1.9rem;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats small{color:var(--muted)}
+
+/* camera lens */
+.lens-wrap{display:flex;justify-content:center;animation:fadeUp 1s .5s ease both}
+.lens{position:relative;width:min(380px,80vw);aspect-ratio:1;animation:float 7s 1.5s ease-in-out infinite}
+.ring{position:absolute;border-radius:50%;inset:0}
+.r1{background:conic-gradient(from 0deg,var(--a),var(--b),var(--c),var(--a));animation:spin 10s linear infinite;box-shadow:0 0 70px rgba(124,92,255,.5)}
+.r2{inset:7%;background:#0b0b14}
+.r3{inset:12%;background:repeating-conic-gradient(#1b1b34 0 10deg,#10101e 10deg 20deg);animation:spin 18s linear infinite reverse;border:3px solid #2a2a4a}
+.r4{inset:30%;background:radial-gradient(circle at 35% 30%,#3a3a7a,#0a0a18 60%);border:4px solid #2a2a4a}
+.blades{position:absolute;inset:34%;border-radius:50%;animation:iris 4s ease-in-out infinite;background:conic-gradient(from 0deg,#7c5cff55 0 60deg,#00d4ff33 60deg 120deg,#ff4f9a55 120deg 180deg,#7c5cff55 180deg 240deg,#00d4ff33 240deg 300deg,#ff4f9a55 300deg 360deg)}
+.shine{position:absolute;top:36%;left:40%;width:12%;height:8%;background:rgba(255,255,255,.7);border-radius:50%;filter:blur(3px);transform:rotate(-30deg)}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:3000}
+.flash.go{animation:flash .5s ease}
+.cam-note{text-align:center;margin-top:16px;color:var(--muted);font-size:.85rem}
+
+.shape{position:absolute;opacity:.4;animation:float 8s ease-in-out infinite}
+.s1{width:90px;height:60px;border:4px solid var(--c);border-radius:10px;top:18%;left:5%}
+.s2{width:20px;height:20px;background:var(--b);border-radius:50%;bottom:16%;left:46%;animation-delay:-3s}
+.s3{width:70px;height:70px;border:4px solid var(--a);border-radius:50%;top:12%;right:6%;animation-delay:-5s}
+
+/* ---------- SECTIONS ---------- */
+section{max-width:1200px;margin:auto;padding:80px 24px}
+.section-title{text-align:center;margin-bottom:46px}
+.section-title h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.section-title h2 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-title p{color:var(--muted);margin-top:8px}
+.skills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.skill{padding:10px 22px;border-radius:30px;background:var(--panel);border:1px solid rgba(255,255,255,.08);font-weight:600;transition:.3s}
+.skill:hover{transform:translateY(-5px);border-color:var(--c);color:var(--c)}
+
+.cat-menu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:50px}
+.cat-menu a{padding:8px 18px;border-radius:30px;background:var(--panel);border:1px solid rgba(255,255,255,.08);font-size:.9rem;color:var(--muted);transition:.3s}
+.cat-menu a:hover{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));transform:translateY(-3px)}
+.category{margin-bottom:70px;scroll-margin-top:90px}
+.category-heading{margin-bottom:22px;border-left:5px solid var(--a);padding-left:16px}
+.category-heading h3{font-size:1.6rem}
+.category-heading p{color:var(--muted)}
+.size-badge{display:inline-block;margin-top:6px;padding:3px 12px;border-radius:20px;font-size:.78rem;font-weight:700;background:rgba(0,212,255,.12);color:var(--c);border:1px solid rgba(0,212,255,.3)}
+.gallery{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(var(--min),1fr))}
+
+.photo{position:relative;aspect-ratio:var(--ar);border-radius:14px;overflow:hidden;cursor:pointer;background:var(--panel);border:1px solid rgba(255,255,255,.07);transition:.4s}
+.photo:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(124,92,255,.35);border-color:var(--a)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:.6s}
+.photo:hover img{transform:scale(1.1)}
+.photo::after{content:"⤢";position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s}
+.photo:hover::after{opacity:1}
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);font-size:.85rem;text-align:center;padding:10px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 12px,transparent 12px 24px)}
+.ph b{font-size:1.6rem;color:var(--a)}
+.cap{position:absolute;left:0;bottom:0;width:100%;padding:26px 12px 10px;font-size:.85rem;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85));transform:translateY(100%);transition:.4s}
+.photo:hover .cap{transform:none}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.lightbox.open{display:flex;animation:fadeIn .3s}
+.lightbox img{max-width:92vw;max-height:86vh;border-radius:10px;animation:zoom .35s}
+.lightbox .close{position:absolute;top:16px;right:24px;font-size:2.4rem;cursor:pointer;color:#fff}
+.lightbox .nv{position:absolute;top:50%;width:50px;height:50px;margin-top:-25px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;user-select:none;transition:.3s}
+.lightbox .nv:hover{background:linear-gradient(135deg,var(--a),var(--b))}
+.lightbox .prev{left:16px}.lightbox .next{right:16px}
+.lb-count{position:absolute;bottom:18px;left:0;width:100%;text-align:center;color:var(--muted);font-size:.9rem}
+
+footer{text-align:center;padding:36px 20px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+footer span{color:var(--b);font-weight:700}
+.top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;z-index:900}
+.top.show{opacity:1;pointer-events:auto}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes blink{50%{opacity:0}}
+@keyframes zoom{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+@keyframes iris{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.55) rotate(60deg)}}
+@keyframes flash{0%{opacity:0}15%{opacity:.85}100%{opacity:0}}
+
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.lens-wrap{order:2}}
+@media(max-width:900px){
+ .burger{display:block}
+ .nav ul{position:absolute;top:100%;left:0;width:100%;flex-direction:column;background:rgba(11,11,20,.97);padding:10px 24px 20px;gap:4px;max-height:0;overflow:hidden;opacity:0;transition:.4s}
+ .nav ul.open{max-height:520px;opacity:1}
+ .nav ul a{display:block}
+ .gallery{grid-template-columns:repeat(2,1fr)!important;gap:12px}
+ .shape{display:none}
+ .lightbox .nv{width:40px;height:40px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header>
+ <div class="nav">
+  <a href="index.html" class="logo">Urooj <span>Ansari</span></a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul id="menu">
+   <li><a href="index.html">Home</a></li>
+   <li><a href="about.html">About</a></li>
+   <li><a href="graphics.html">Graphics</a></li>
+   <li><a href="video-editing.html">Video Editing</a></li>
+   <li><a href="web-development.html">Web Development</a></li>
+   <li><a href="photography.html" class="active">Photography</a></li>
+   <li><a href="contact.html">Contact</a></li>
+  </ul>
+ </div>
+</header>
+
+<!-- HERO / INTRO -->
+<div class="hero" id="top">
+ <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div>
+ <div class="hero-inner">
+  <div>
+   <div class="tag">Photography Portfolio</div>
+   <h1>I Capture Moments That <span>Last Forever</span></h1>
+   <div class="typed" id="typed"></div>
+   <p class="intro">Photography is the art of freezing a moment with light, emotion and perspective. I shoot portraits, nature, products, weddings, street life and food, and every frame is edited to tell a story worth remembering.</p>
+   <div class="btns">
+    <a href="#gallery" class="btn primary">View My Photos</a>
+    <a href="contact.html" class="btn ghost">Book a Shoot</a>
+   </div>
+   <div class="stats">
+    <div><b data-count="500">0</b><small>Photos Captured</small></div>
+    <div><b data-count="6">0</b><small>Photo Styles</small></div>
+    <div><b data-count="40">0</b><small>Happy Clients</small></div>
+   </div>
+  </div>
+  <div>
+   <div class="lens-wrap" id="lensBtn" title="Click!">
+    <div class="lens"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div><div class="blades"></div><div class="shine"></div></div>
+   </div>
+   <p class="cam-note">📸 Lens par click karke dekhein</p>
+  </div>
+ </div>
+</div>
+
+<!-- WHAT I DO -->
+<section>
+ <div class="section-title reveal">
+  <h2>What I <span>Shoot</span></h2>
+  <p>Photography services I offer</p>
+ </div>
+ <div class="skills reveal">
+  <div class="skill">Portrait</div><div class="skill">Nature &amp; Landscape</div><div class="skill">Product Shoots</div>
+  <div class="skill">Wedding &amp; Events</div><div class="skill">Street Photography</div><div class="skill">Food Photography</div>
+  <div class="skill">Photo Retouching</div><div class="skill">Color Correction</div>
+ </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section id="gallery">
+ <div class="section-title reveal">
+  <h2>My <span>Photo Work</span></h2>
+  <p>Sorted by photography style</p>
+ </div>
+ <div class="cat-menu" id="catMenu"></div>
+ <div id="categories"></div>
+</section>
+
+<footer>
+ <p>© 2026 <span>Urooj Ansari</span> | Photography Portfolio</p>
+ <p>Light • Moment • Emotion</p>
+</footer>
+
+<div class="flash" id="flash"></div>
+<div class="lightbox" id="lightbox">
+ <span class="close" id="closeLb">&times;</span>
+ <span class="nv prev" id="prev">‹</span>
+ <img id="lbImg" alt="">
+ <span class="nv next" id="next">›</span>
+ <div class="lb-count" id="lbCount"></div>
+</div>
+<a href="#top" class="top" id="toTop">↑</a>
+
+<script>
+/* =====================================================
+   SETTINGS — yahan se apni photos add karein
+   -----------------------------------------------------
+   id     = section ka naam (menu link ke liye)
+   title  = section ki heading
+   desc   = chhoti description
+   prefix = image ke naam ki shuruaat
+            (images/prefix1.jpg ... images/prefix10.jpg)
+   label  = photo par dikhne wala naam
+   w, h   = photo ka size / ratio
+   min    = grid me ek photo ki minimum width (px)
+   count  = kitni photos (default 10)
+   ===================================================== */
+const sections = [
+ {id:"portrait", title:"01. Portrait Photography",    desc:"Faces, expressions and personal shoots",   prefix:"portrait", label:"Portrait", w:4,h:5, min:220},
+ {id:"nature",   title:"02. Nature & Landscape",      desc:"Mountains, skies, parks and scenery",      prefix:"nature",   label:"Nature",   w:3,h:2, min:300},
+ {id:"product",  title:"03. Product Photography",     desc:"Clean shots for brands and online stores", prefix:"product",  label:"Product",  w:1,h:1, min:240},
+ {id:"wedding",  title:"04. Wedding & Events",        desc:"Weddings, parties and special occasions",  prefix:"wedding",  label:"Event",    w:3,h:2, min:300},
+ {id:"street",   title:"05. Street Photography",      desc:"Candid life, people and city moments",     prefix:"street",   label:"Street",   w:2,h:3, min:200},
+ {id:"food",     title:"06. Food Photography",        desc:"Restaurant and cafe food shots",           prefix:"food",     label:"Food",     w:4,h:3, min:270}
+];
+const COUNT = 10;
+
+const wrap=document.getElementById('categories'),catMenu=document.getElementById('catMenu');
+const pad=n=>String(n).padStart(2,'0');
+sections.forEach(s=>{
+  let items='';
+  for(let i=1;i<=COUNT;i++){
+    items+=`<div class="photo" data-sec="${s.id}" data-i="${i-1}" style="--ar:${s.w}/${s.h}">
+      <img loading="lazy" src="images/${s.prefix}${i}.jpg" alt="${s.label} ${i}" onerror="this.outerHTML='<div class=ph><b>+</b>Add photo ${pad(i)}</div>';this.parentNode&&0">
+      <div class="cap">${s.label} ${pad(i)}</div></div>`;
+  }
+  wrap.insertAdjacentHTML('beforeend',`<div class="category reveal" id="${s.id}"><div class="category-heading"><h3>${s.title}</h3><p>${s.desc}</p><span class="size-badge">Ratio ${s.w}:${s.h}</span></div><div class="gallery" style="--min:${s.min}px">${items}</div></div>`);
+  catMenu.insertAdjacentHTML('beforeend',`<a href="#${s.id}">${s.title.replace(/^\d+\.\s*/,'')}</a>`);
+});
+
+/* ---------- lightbox with next / previous ---------- */
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCount=document.getElementById('lbCount');
+let list=[],idx=0;
+function show(){lbImg.src=list[idx].src;lbCount.textContent=(idx+1)+' / '+list.length}
+document.addEventListener('click',e=>{
+  const p=e.target.closest('.photo'); if(!p) return;
+  const imgs=[...document.querySelectorAll(`#${p.dataset.sec} .photo img`)];
+  if(!p.querySelector('img')) return;               // khali box
+  list=imgs; idx=imgs.indexOf(p.querySelector('img'));
+  show(); lb.classList.add('open');
+});
+const go=d=>{idx=(idx+d+list.length)%list.length;lbImg.style.animation='none';lbImg.offsetWidth;lbImg.style.animation='zoom .35s';show()};
+document.getElementById('prev').onclick=e=>{e.stopPropagation();go(-1)};
+document.getElementById('next').onclick=e=>{e.stopPropagation();go(1)};
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.id==='closeLb')lb.classList.remove('open')});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')lb.classList.remove('open');
+  if(e.key==='ArrowLeft')go(-1);
+  if(e.key==='ArrowRight')go(1);
+});
+
+/* ---------- camera flash on lens click ---------- */
+const flash=document.getElementById('flash');
+document.getElementById('lensBtn').onclick=()=>{flash.classList.remove('go');flash.offsetWidth;flash.classList.add('go')};
+
+/* ---------- mobile menu ---------- */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+
+/* ---------- typing effect ---------- */
+const words=["Portrait Photography","Nature & Landscape","Product Shoots","Wedding & Events","Street & Food"];
+let wi=0,ch=0,del=false;const typed=document.getElementById('typed');
+(function type(){
+  const word=words[wi];
+  typed.textContent=del?word.slice(0,--ch):word.slice(0,++ch);
+  let speed=del?50:110;
+  if(!del&&ch===word.length){speed=1500;del=true}
+  else if(del&&ch===0){del=false;wi=(wi+1)%words.length;speed=400}
+  setTimeout(type,speed);
+})();
+
+/* ---------- scroll reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- counters ---------- */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const t=+el.dataset.count;let n=0;const step=Math.max(1,Math.ceil(t/60));
+  const timer=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(timer)}el.textContent=n+'+'},30);
+});
+
+/* ---------- back to top ---------- */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>500));
+</script>
+</body>
+</html>

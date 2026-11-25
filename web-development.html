@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development Portfolio | Urooj Ansari</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{--bg:#0b0b14;--panel:#151526;--text:#eaeaf5;--muted:#9a9ab5;--a:#7c5cff;--b:#ff4f9a;--c:#00d4ff}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ---------- NAVBAR ---------- */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(11,11,20,.8);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);animation:slideDown .8s ease}
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.logo{font-size:1.4rem;font-weight:800}
+.logo span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav ul{display:flex;gap:4px;list-style:none}
+.nav ul a{padding:8px 14px;border-radius:30px;font-weight:600;font-size:.9rem;color:var(--muted);transition:.3s;white-space:nowrap}
+.nav ul a:hover,.nav ul a.active{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 6px 20px rgba(124,92,255,.35)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:32px;height:24px;position:relative}
+.burger span{position:absolute;left:0;width:100%;height:3px;background:#fff;border-radius:3px;transition:.3s}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:20px}
+.burger.open span:nth-child(1){top:10px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:10px;transform:rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(circle at 15% 25%,rgba(124,92,255,.25),transparent 45%),radial-gradient(circle at 85% 75%,rgba(0,212,255,.2),transparent 45%),var(--bg)}
+.hero-inner{max-width:1200px;margin:auto;width:100%;display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center;position:relative;z-index:2}
+.tag{display:inline-block;padding:6px 18px;border:1px solid rgba(255,255,255,.2);border-radius:30px;font-size:.85rem;color:var(--c);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;animation:fadeUp 1s ease both}
+.hero h1{font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.15;font-weight:800;animation:fadeUp 1s .2s ease both}
+.hero h1 span{background:linear-gradient(90deg,var(--a),var(--b),var(--c));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.typed{margin-top:14px;font-size:clamp(1.1rem,2.4vw,1.5rem);color:var(--c);min-height:2.2rem;font-weight:600;animation:fadeUp 1s .4s ease both}
+.typed::after{content:"|";margin-left:3px;animation:blink 1s infinite}
+.intro{margin-top:16px;color:var(--muted);font-size:1.05rem;max-width:560px;animation:fadeUp 1s .6s ease both}
+.btns{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 1s .8s ease both}
+.btn{padding:13px 28px;border-radius:40px;font-weight:700;transition:.3s;display:inline-block}
+.btn.primary{background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 10px 30px rgba(124,92,255,.4)}
+.btn.primary:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(255,79,154,.45)}
+.btn.ghost{border:2px solid rgba(255,255,255,.25)}
+.btn.ghost:hover{border-color:var(--c);color:var(--c);transform:translateY(-4px)}
+.stats{margin-top:40px;display:flex;gap:36px;flex-wrap:wrap;animation:fadeUp 1s 1s ease both}
+.stats b{display:block;font-size:1.9rem;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats small{color:var(--muted)}
+
+/* code window */
+.code-win{background:#10101e;border:1px solid rgba(255,255,255,.1);border-radius:16px;box-shadow:0 30px 70px rgba(124,92,255,.3);overflow:hidden;animation:fadeUp 1s .5s ease both,float 7s 1.5s ease-in-out infinite}
+.code-bar{display:flex;gap:8px;padding:12px 16px;background:#181830;align-items:center}
+.code-bar i{width:12px;height:12px;border-radius:50%;display:block}
+.code-bar i:nth-child(1){background:#ff5f57}.code-bar i:nth-child(2){background:#febc2e}.code-bar i:nth-child(3){background:#28c840}
+.code-bar span{margin-left:10px;font-size:.8rem;color:var(--muted)}
+pre{padding:20px;font-family:Consolas,Menlo,monospace;font-size:.92rem;line-height:1.8;min-height:250px;white-space:pre-wrap;color:#cfd0ee}
+.k{color:#ff79c6}.s{color:#7ee787}.t{color:#00d4ff}.p{color:#ffb86c}.cm{color:#6b6b90}
+pre::after{content:"▌";color:var(--c);animation:blink 1s infinite}
+
+.shape{position:absolute;opacity:.4;animation:float 8s ease-in-out infinite}
+.s1{font-size:3rem;top:18%;left:5%;color:var(--a);font-family:monospace;font-weight:800}
+.s2{font-size:2.6rem;bottom:16%;left:44%;color:var(--b);font-family:monospace;font-weight:800;animation-delay:-3s}
+.s3{width:70px;height:70px;border:4px solid var(--c);border-radius:50%;top:12%;right:6%;animation-delay:-5s}
+
+/* ---------- SECTIONS ---------- */
+section{max-width:1200px;margin:auto;padding:80px 24px}
+.section-title{text-align:center;margin-bottom:46px}
+.section-title h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.section-title h2 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-title p{color:var(--muted);margin-top:8px}
+.skills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.skill{padding:10px 22px;border-radius:30px;background:var(--panel);border:1px solid rgba(255,255,255,.08);font-weight:600;transition:.3s}
+.skill:hover{transform:translateY(-5px);border-color:var(--c);color:var(--c)}
+
+.cat-menu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:50px}
+.cat-menu a{padding:8px 22px;border-radius:30px;background:var(--panel);border:1px solid rgba(255,255,255,.08);font-size:.92rem;color:var(--muted);transition:.3s}
+.cat-menu a:hover{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));transform:translateY(-3px)}
+.category{margin-bottom:70px;scroll-margin-top:90px}
+.category-heading{margin-bottom:22px;border-left:5px solid var(--a);padding-left:16px}
+.category-heading h3{font-size:1.6rem}
+.category-heading p{color:var(--muted)}
+.size-badge{display:inline-block;margin-top:6px;padding:3px 12px;border-radius:20px;font-size:.78rem;font-weight:700;background:rgba(0,212,255,.12);color:var(--c);border:1px solid rgba(0,212,255,.3)}
+.gallery{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(var(--min),1fr))}
+
+/* card (picture + video) */
+.card{position:relative;aspect-ratio:var(--ar);border-radius:14px;overflow:hidden;cursor:pointer;background:var(--panel);border:1px solid rgba(255,255,255,.07);transition:.4s}
+.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(124,92,255,.35);border-color:var(--a)}
+.card img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:.5s}
+.card:hover img{transform:scale(1.08)}
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);font-size:.85rem;text-align:center;padding:10px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 12px,transparent 12px 24px)}
+.ph b{font-size:1.6rem;color:var(--a)}
+.cap{position:absolute;left:0;bottom:0;width:100%;padding:28px 14px 10px;font-size:.88rem;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85));display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cap em{font-style:normal;font-size:.72rem;color:var(--c);border:1px solid var(--c);padding:1px 8px;border-radius:12px;white-space:nowrap}
+.play{position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.5);transition:.3s}
+.play::after{content:"";border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.card:hover .play{transform:scale(1.15)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.modal.open{display:flex;animation:fadeIn .3s}
+.modal .box{background:#000;border-radius:12px;overflow:hidden;animation:zoom .35s}
+.modal .box.vid{width:min(92vw,calc(82vh * var(--r)));aspect-ratio:var(--ar)}
+.modal .box.img{max-width:95vw}
+.modal iframe,.modal video{width:100%;height:100%;border:0;display:block}
+.modal .box.img img{max-width:95vw;max-height:88vh;display:block}
+.modal .close{position:absolute;top:16px;right:24px;font-size:2.4rem;cursor:pointer;color:#fff}
+
+footer{text-align:center;padding:36px 20px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+footer span{color:var(--b);font-weight:700}
+.top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;z-index:900}
+.top.show{opacity:1;pointer-events:auto}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes blink{50%{opacity:0}}
+@keyframes zoom{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+
+@media(max-width:900px){
+ .hero-inner{grid-template-columns:1fr}
+ .code-win{order:2}
+}
+@media(max-width:860px){
+ .burger{display:block}
+ .nav ul{position:absolute;top:100%;left:0;width:100%;flex-direction:column;background:rgba(11,11,20,.97);padding:10px 24px 20px;gap:4px;max-height:0;overflow:hidden;opacity:0;transition:.4s}
+ .nav ul.open{max-height:460px;opacity:1}
+ .nav ul a{display:block}
+ .gallery{grid-template-columns:1fr!important;gap:16px}
+ .shape{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header>
+ <div class="nav">
+  <a href="index.html" class="logo">Urooj <span>Ansari</span></a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul id="menu">
+   <li><a href="index.html">Home</a></li>
+   <li><a href="about.html">About</a></li>
+   <li><a href="graphics.html">Graphics</a></li>
+   <li><a href="video-editing.html">Video Editing</a></li>
+   <li><a href="web-development.html" class="active">Web Development</a></li>
+   <li><a href="contact.html">Contact</a></li>
+  </ul>
+ </div>
+</header>
+
+<!-- HERO / INTRO -->
+<div class="hero" id="top">
+ <div class="shape s1">&lt;/&gt;</div><div class="shape s2">{ }</div><div class="shape s3"></div>
+ <div class="hero-inner">
+  <div>
+   <div class="tag">Web Development Portfolio</div>
+   <h1>I Build Websites That <span>Work &amp; Wow</span></h1>
+   <div class="typed" id="typed"></div>
+   <p class="intro">Web development is turning an idea into a fast, responsive and beautiful website. I design and code business sites, portfolios, landing pages and online stores using HTML, CSS and JavaScript, built to look great on every screen.</p>
+   <div class="btns">
+    <a href="#pictures" class="btn primary">See My Projects</a>
+    <a href="contact.html" class="btn ghost">Hire Me</a>
+   </div>
+   <div class="stats">
+    <div><b data-count="20">0</b><small>Projects Built</small></div>
+    <div><b data-count="100">0</b><small>% Responsive</small></div>
+    <div><b data-count="25">0</b><small>Happy Clients</small></div>
+   </div>
+  </div>
+  <div class="code-win">
+   <div class="code-bar"><i></i><i></i><i></i><span>portfolio.html</span></div>
+   <pre id="code"></pre>
+  </div>
+ </div>
+</div>
+
+<!-- WHAT I DO -->
+<section>
+ <div class="section-title reveal">
+  <h2>What I <span>Build</span></h2>
+  <p>Web development services I offer</p>
+ </div>
+ <div class="skills reveal">
+  <div class="skill">HTML5</div><div class="skill">CSS3 &amp; Animations</div><div class="skill">JavaScript</div>
+  <div class="skill">Responsive Design</div><div class="skill">Portfolio Websites</div><div class="skill">Business Websites</div>
+  <div class="skill">Landing Pages</div><div class="skill">E-Commerce Design</div>
+ </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="gallery">
+ <div class="section-title reveal">
+  <h2>My <span>Web Projects</span></h2>
+  <p>Project pictures and video walkthroughs</p>
+ </div>
+ <div class="cat-menu">
+  <a href="#pictures">Project Pictures</a>
+  <a href="#videos">Project Videos</a>
+ </div>
+ <div id="categories"></div>
+</section>
+
+<footer>
+ <p>© 2026 <span>Urooj Ansari</span> | Web Development Portfolio</p>
+ <p>Code • Design • Deploy</p>
+</footer>
+
+<div class="modal" id="modal"><span class="close" id="closeM">&times;</span><div class="box" id="box"></div></div>
+<a href="#top" class="top" id="toTop">↑</a>
+
+<script>
+/* =====================================================
+   SETTINGS — yahan se apna kaam add karein
+   -----------------------------------------------------
+   PICTURES (10): har project ka
+     img  = screenshot ka path, maslan "images/web1.jpg"
+     name = project ka naam
+     link = live website ka link (khali '' chorein to sirf picture bari hogi)
+   VIDEOS (10): har video ka link
+     YouTube / Google Drive / direct .mp4 / koi bhi link
+   ===================================================== */
+const pictures = {
+ w:1600, h:1000, min:340,       // screenshot ka size (16:10)
+ items:[
+  {img:"images/web1.jpg", name:"Project 01", link:""},
+  {img:"images/web2.jpg", name:"Project 02", link:""},
+  {img:"images/web3.jpg", name:"Project 03", link:""},
+  {img:"images/web4.jpg", name:"Project 04", link:""},
+  {img:"images/web5.jpg", name:"Project 05", link:""},
+  {img:"images/web6.jpg", name:"Project 06", link:""},
+  {img:"images/web7.jpg", name:"Project 07", link:""},
+  {img:"images/web8.jpg", name:"Project 08", link:""},
+  {img:"images/web9.jpg", name:"Project 09", link:""},
+  {img:"images/web10.jpg",name:"Project 10", link:""}
+ ]
+};
+const videos = {
+ w:1920, h:1080, min:340,       // video ka size (16:9)
+ links:["","","","","","","","","",""]
+};
+
+/* ---------- helpers ---------- */
+function parse(url){
+  if(!url) return null;
+  let m;
+  if((m=url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/))) return {type:'yt',id:m[1]};
+  if((m=url.match(/drive\.google\.com\/file\/d\/([\w-]+)/))) return {type:'drive',id:m[1]};
+  if(/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) return {type:'file',url};
+  return {type:'link',url};
+}
+const pad=n=>String(n).padStart(2,'0');
+
+/* ---------- build sections ---------- */
+let html='';
+// pictures
+let pc='';
+pictures.items.forEach((p,i)=>{
+  pc+=`<div class="card" data-kind="img" data-src="${p.img}" data-link="${p.link}" style="--ar:${pictures.w}/${pictures.h}">
+   <img loading="lazy" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=ph><b>+</b>Add picture ${pad(i+1)}</div>'">
+   <div class="cap">${p.name}${p.link?'<em>Live ↗</em>':''}</div></div>`;
+});
+html+=`<div class="category reveal" id="pictures"><div class="category-heading"><h3>01. Project Pictures</h3><p>Screenshots of websites I have built</p><span class="size-badge">${pictures.w} × ${pictures.h} (16:10)</span></div><div class="gallery" style="--min:${pictures.min}px">${pc}</div></div>`;
+// videos
+let vc='';
+videos.links.forEach((l,i)=>{
+  const p=parse(l);
+  let inner;
+  if(!p) inner=`<div class="ph"><b>+</b>Add video ${pad(i+1)}</div>`;
+  else if(p.type==='yt') inner=`<img loading="lazy" src="https://img.youtube.com/vi/${p.id}/hqdefault.jpg" alt="Video ${pad(i+1)}"><span class="play"></span><div class="cap">Video ${pad(i+1)}</div>`;
+  else inner=`<div class="ph"><b>▶</b>Video ${pad(i+1)}</div><span class="play"></span><div class="cap">Video ${pad(i+1)}</div>`;
+  vc+=`<div class="card" data-kind="vid" data-link="${l}" style="--ar:${videos.w}/${videos.h}">${inner}</div>`;
+});
+html+=`<div class="category reveal" id="videos"><div class="category-heading"><h3>02. Project Videos</h3><p>Video walkthroughs of my websites</p><span class="size-badge">${videos.w} × ${videos.h} (16:9)</span></div><div class="gallery" style="--min:${videos.min}px">${vc}</div></div>`;
+document.getElementById('categories').innerHTML=html;
+
+/* ---------- modal ---------- */
+const modal=document.getElementById('modal'),box=document.getElementById('box');
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.card'); if(!c) return;
+  if(c.dataset.kind==='img'){
+    if(!c.querySelector('img')) return;
+    box.className='box img'; box.innerHTML=`<img src="${c.dataset.src}" alt="">`;
+    if(c.dataset.link) box.insertAdjacentHTML('beforeend',`<a href="${c.dataset.link}" target="_blank" style="display:block;text-align:center;padding:12px;background:linear-gradient(90deg,#7c5cff,#ff4f9a);font-weight:700">Visit Live Website ↗</a>`);
+    modal.classList.add('open'); return;
+  }
+  const p=parse(c.dataset.link); if(!p) return;
+  if(p.type==='link'){window.open(p.url,'_blank');return}
+  box.className='box vid';
+  box.style.setProperty('--ar',videos.w+'/'+videos.h);
+  box.style.setProperty('--r',videos.w/videos.h);
+  if(p.type==='yt')    box.innerHTML=`<iframe src="https://www.youtube.com/embed/${p.id}?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  if(p.type==='drive') box.innerHTML=`<iframe src="https://drive.google.com/file/d/${p.id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  if(p.type==='file')  box.innerHTML=`<video src="${p.url}" controls autoplay></video>`;
+  modal.classList.add('open');
+});
+function closeModal(){modal.classList.remove('open');box.innerHTML=''}
+modal.addEventListener('click',e=>{if(!box.contains(e.target))closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* ---------- mobile menu ---------- */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+
+/* ---------- typing effect ---------- */
+const words=["Responsive Websites","Portfolio Websites","Business Websites","Landing Pages","Clean HTML & CSS"];
+let wi=0,ch=0,del=false;const typed=document.getElementById('typed');
+(function type(){
+  const word=words[wi];
+  typed.textContent=del?word.slice(0,--ch):word.slice(0,++ch);
+  let speed=del?50:110;
+  if(!del&&ch===word.length){speed=1500;del=true}
+  else if(del&&ch===0){del=false;wi=(wi+1)%words.length;speed=400}
+  setTimeout(type,speed);
+})();
+
+/* ---------- code window typing ---------- */
+const codeLines=[
+ '<span class="cm">&lt;!-- my first line of magic --&gt;</span>',
+ '<span class="k">&lt;section</span> <span class="p">class</span>=<span class="s">"hero"</span><span class="k">&gt;</span>',
+ '  <span class="k">&lt;h1&gt;</span>Hello, World!<span class="k">&lt;/h1&gt;</span>',
+ '  <span class="k">&lt;p&gt;</span>I build awesome websites<span class="k">&lt;/p&gt;</span>',
+ '<span class="k">&lt;/section&gt;</span>',
+ '',
+ '<span class="t">.hero</span> {',
+ '  <span class="p">color</span>: <span class="s">#7c5cff</span>;',
+ '  <span class="p">animation</span>: <span class="s">fadeUp 1s</span>;',
+ '}'
+];
+const pre=document.getElementById('code');
+let li=0;
+(function typeCode(){
+  if(li<codeLines.length){pre.innerHTML+=codeLines[li]+'\n';li++;setTimeout(typeCode,550)}
+  else setTimeout(()=>{pre.innerHTML='';li=0;typeCode()},3500);
+})();
+
+/* ---------- scroll reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- counters ---------- */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const t=+el.dataset.count;let n=0;const step=Math.max(1,Math.ceil(t/60));
+  const timer=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(timer)}el.textContent=n+'+'},30);
+});
+
+/* ---------- back to top ---------- */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>500));
+</script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me | Urooj Ansari</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#09070c;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:#8100a8;
+    filter:blur(150px);
+    opacity:.25;
+    top:10%;
+    left:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:#bd70e7;
+    filter:blur(150px);
+    opacity:.15;
+    bottom:0;
+    right:-100px;
+    z-index:-1;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(15,10,20,.9);
+    position:sticky;
+    top:0;
+    z-index:100;
+    border-bottom:1px solid #5c2870;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:800;
+    color:#d7a4f5;
+}
+
+.logo span{
+    color:white;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#d69aff;
+}
+
+.menu{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:70px 9%;
+    gap:50px;
+}
+
+.hero-text{
+    flex:1;
+    animation:slideLeft 1s ease;
+}
+
+.tag{
+    color:#d59aff;
+    letter-spacing:4px;
+    font-size:13px;
+}
+
+.hero h1{
+    font-size:55px;
+    line-height:1.3;
+    margin:20px 0;
+}
+
+.hero h1 span{
+    color:#c77af0;
+}
+
+.signature{
+    font-family:'Great Vibes',cursive;
+    color:#dbaaff;
+    font-size:43px;
+    margin:15px 0;
+}
+
+.hero p{
+    color:#c9c3ce;
+    line-height:1.9;
+    max-width:600px;
+}
+
+.buttons{
+    margin-top:30px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:13px 25px;
+    border-radius:30px;
+    background:#9c42c7;
+    color:white;
+    font-weight:600;
+    transition:.4s;
+    border:1px solid #bd76e9;
+}
+
+.btn:hover{
+    background:white;
+    color:#67158a;
+    transform:translateY(-5px);
+    box-shadow:0 0 25px #a64bce;
+}
+
+.btn-outline{
+    background:transparent;
+}
+
+/* PROFILE */
+.profile{
+    width:310px;
+    height:380px;
+    border:3px solid #c77af0;
+    border-radius:150px 150px 25px 25px;
+    padding:10px;
+    animation:float 4s infinite ease-in-out;
+    box-shadow:0 0 35px #79299b;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:140px 140px 20px 20px;
+}
+
+/* COMMON SECTION */
+section{
+    padding:75px 9%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:45px;
+}
+
+.section-title span{
+    color:#c77af0;
+}
+
+/* ABOUT */
+.about-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.about-card{
+    background:rgba(255,255,255,.045);
+    padding:30px;
+    border:1px solid #633477;
+    border-radius:20px;
+    transition:.4s;
+}
+
+.about-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px #642783;
+}
+
+.about-card h3{
+    color:#d79afa;
+    margin-bottom:15px;
+}
+
+.about-card p{
+    color:#ccc;
+    line-height:1.9;
+}
+
+/* SKILLS */
+.skills{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.skill{
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    background:linear-gradient(145deg,#25132e,#100d15);
+    border:1px solid #75418b;
+    transition:.4s;
+}
+
+.skill:hover{
+    transform:scale(1.06);
+    background:#54216d;
+}
+
+.skill h3{
+    color:#dda5ff;
+    margin-bottom:10px;
+}
+
+.skill p{
+    color:#c8bdcf;
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* SOFTWARE */
+.software{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.software span{
+    padding:13px 23px;
+    background:#25152e;
+    border:1px solid #a15bc1;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.software span:hover{
+    background:#a14cc6;
+    transform:translateY(-5px);
+}
+
+/* CV */
+.cv-section{
+    text-align:center;
+}
+
+.cv-frame{
+    max-width:550px;
+    margin:auto;
+    padding:12px;
+    border:2px solid #b96be0;
+    border-radius:20px;
+    background:#1c1024;
+    box-shadow:0 0 30px #70258c;
+}
+
+.cv-frame img{
+    width:100%;
+    display:block;
+    border-radius:12px;
+}
+
+.cv-section p{
+    color:#c9c3ce;
+    margin:20px;
+}
+
+/* CONTACT */
+.contact{
+    text-align:center;
+    background:linear-gradient(120deg,#26102f,#0c0910);
+    border-top:1px solid #6c367f;
+}
+
+.contact p{
+    color:#ccc;
+    margin:15px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#b9a7c2;
+    border-top:1px solid #492254;
+}
+
+/* ANIMATIONS */
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-15px)}
+}
+
+@keyframes slideLeft{
+    from{opacity:0;transform:translateX(-60px)}
+    to{opacity:1;transform:translateX(0)}
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+
+    nav{
+        padding:18px 5%;
+    }
+
+    nav .links{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:#160d1c;
+        padding:25px;
+        text-align:center;
+    }
+
+    nav .links.active{
+        display:flex;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav a{
+        margin:0;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero{
+        flex-direction:column-reverse;
+        text-align:center;
+        padding:60px 6%;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .profile{
+        width:250px;
+        height:300px;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+
+    .about-box{
+        grid-template-columns:1fr;
+    }
+
+    .skills{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:480px){
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Urooj<span> &nbsp;Ansari.</span></div>
+
+    <div class="links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#software">Software</a>
+        <a href="#cv">My CV</a>
+        <a href="contactme.html">Contact</a>
+    </div>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+
+    <div class="hero-text">
+        <div class="tag">WELCOME TO MY WORLD</div>
+
+        <h1>Hello, I'm <span>Urooj Ansari</span></h1>
+
+        <div class="signature">Dream • Create • Grow</div>
+
+        <p>
+            A creative and multidisciplinary professional passionate
+            about Web Development, Graphic Designing, Video Editing
+            and Digital Marketing. I love transforming ideas into
+            creative digital experiences.
+        </p>
+
+        <div class="buttons">
+            <a href="#about" class="btn">Explore More</a>
+            <a href="#cv" class="btn btn-outline">View My CV</a>
+        </div>
+    </div>
+
+    <div class="profile">
+        <!-- APNI PROFILE IMAGE YAHAN LAGAYEN -->
+        <img src="img/urooj.jpeg" alt="Urooj Ansari">
+    </div>
+
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+
+    <h2 class="section-title">About <span>Me</span></h2>
+
+    <div class="about-box">
+
+        <div class="about-card">
+            <h3>Who Am I?</h3>
+            <p>
+                I'm Urooj Ansari, a creative and dedicated
+                multidisciplinary professional. I have an interest
+                in technology, design, creativity and digital
+                innovation. I enjoy learning new skills and
+                creating meaningful projects.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>My Professional Journey</h3>
+            <p>
+                My skills include Front-End Web Development,
+                Graphic Design, Video Editing, Social Media
+                Marketing, Digital Marketing, Customer Handling
+                and Event Management. I am continuously improving
+                my technical and professional abilities.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>My Experience</h3>
+            <p>
+                I have experience in online customer handling,
+                social media accounts management, marketing,
+                order handling, communication and creative
+                content development.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>My Education & Goals</h3>
+            <p>
+                Graduation is currently in progress. My goal is
+                to grow professionally, gain practical experience
+                and build creative digital solutions.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+
+    <h2 class="section-title">My <span>Expertise</span></h2>
+
+    <div class="skills">
+
+        <div class="skill">
+            <h3>Web Development</h3>
+            <p>HTML, CSS, JavaScript, Responsive Design</p>
+        </div>
+
+        <div class="skill">
+            <h3>Graphic Design</h3>
+            <p>Photoshop, Illustrator, Canva</p>
+        </div>
+
+        <div class="skill">
+            <h3>Video / photo  Editing </h3>
+            <p>Premiere Pro, After Effects, CapCut, InShot , premier pro , after effects , capcut</p>
+        </div>
+
+        <div class="skill">
+            <h3>Digital Marketing</h3>
+            <p>Social Media Ads & Marketing Strategy</p>
+        </div>
+
+        <div class="skill">
+            <h3>Social Media Handling / Contant Creating (Ai)</h3>
+            <p>Transition Reels, Tranding Reels , Manage Social Accounts</p>
+        </div>
+
+        <div class="skill">
+            <h3>Event Management</h3>
+            <p>Planning, Organizing & Execution , Team managments</p>
+        </div>
+
+<div class="skill">
+            <h3>Online Marketing / sales / customer handling /chat expert</h3>
+            <p>Customer handling very well, Reading Mind  , Sale On Skills</p>
+</div>
+        
+        <div class="skill">
+            <h3>Admin in Private School</h3>
+            <p>Planning, Organizing & Execution , Team managments , Working Hard</p>
+        </div>>
+
+
+
+
+
+    </div>
+</section>
+
+<!-- SOFTWARE -->
+<section id="software" class="reveal">
+
+    <h2 class="section-title">Computer <span>Knowledge</span></h2>
+
+    <div class="software">
+        <span>MS Word</span>
+        <span>premier pro</span>
+        <span>after effects</span>
+        <span>Photoshop</span>
+        <span>Illustrator</span>
+        <span>capcut</span>
+        <span>Canva</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>computer Knowledge</span>
+    </div>
+</section>
+
+<!-- CV IMAGE -->
+<section id="cv" class="cv-section reveal">
+
+    <h2 class="section-title">My <span>CV</span></h2>
+
+    <div class="cv-frame">
+        <!-- APNI CV IMAGE KA NAAM cv.png RAKHEN -->
+        <img src="img/cv.jpeg" alt="Urooj Ansari CV">
+    </div>
+
+    <p>Explore my professional profile and skills.</p>
+
+    <a href="img/cv.jpeg" download class="btn">Download My CV ↓</a>
+
+</section>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+
+    <h2 class="section-title">Let's Work <span>Together</span></h2>
+
+    <p>Have a project or opportunity? Let's connect and create something amazing.</p>
+
+    <div class="buttons" style="justify-content:center">
+        <a href="mailto:uroojwebtech@gmail.com" class="btn">
+            Email Me
+        </a>
+
+        <a href="https://web.whatsapp.com/" class="btn btn-outline">
+            WhatsApp
+        </a>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Urooj Ansari | Dream • Create • Grow
+</footer>
+
+<script>
+
+// MOBILE MENU
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+// CLOSE MENU AFTER CLICK
+document.querySelectorAll(".links a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        document.getElementById("navLinks").classList.remove("active");
+    });
+});
+
+// SCROLL ANIMATION
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(section=>{
+    observer.observe(section);
+});
+
+</script>
+
+</body>
+</html>
