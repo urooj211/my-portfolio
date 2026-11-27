@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphic Design Portfolio | Urooj Ansari</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{--bg:#0b0b14;--panel:#151526;--text:#eaeaf5;--muted:#9a9ab5;--a:#7c5cff;--b:#ff4f9a;--c:#00d4ff}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ---------- NAVBAR ---------- */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(11,11,20,.8);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);animation:slideDown .8s ease}
+.nav{max-width:1250px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.logo{font-size:1.4rem;font-weight:800;letter-spacing:.5px}
+.logo span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav ul{display:flex;gap:3px;list-style:none}
+.nav ul a{position:relative;padding:8px 13px;border-radius:30px;font-weight:600;font-size:.88rem;color:var(--muted);transition:.3s;white-space:nowrap}
+.nav ul a:hover,.nav ul a.active{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 6px 20px rgba(124,92,255,.35)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:32px;height:24px;position:relative}
+.burger span{position:absolute;left:0;width:100%;height:3px;background:#fff;border-radius:3px;transition:.3s}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:20px}
+.burger.open span:nth-child(1){top:10px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:10px;transform:rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 20%,rgba(124,92,255,.25),transparent 45%),radial-gradient(circle at 80% 70%,rgba(255,79,154,.22),transparent 45%),var(--bg)}
+.shape{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;animation:float 8s ease-in-out infinite}
+.s1{width:90px;height:90px;background:linear-gradient(135deg,var(--a),var(--c));top:18%;left:10%}
+.s2{width:60px;height:60px;background:linear-gradient(135deg,var(--b),#ffb347);top:68%;left:18%;animation-delay:-2s}
+.s3{width:120px;height:120px;border:4px solid var(--c);background:transparent;top:22%;right:12%;animation-delay:-4s}
+.s4{width:70px;height:70px;border-radius:16px;background:linear-gradient(135deg,var(--a),var(--b));bottom:14%;right:16%;animation:spin 12s linear infinite}
+.hero-content{position:relative;z-index:2;max-width:820px}
+.tag{display:inline-block;padding:6px 18px;border:1px solid rgba(255,255,255,.2);border-radius:30px;font-size:.85rem;color:var(--c);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;animation:fadeUp 1s ease both}
+.hero h1{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.15;font-weight:800;animation:fadeUp 1s .2s ease both}
+.hero h1 span{background:linear-gradient(90deg,var(--a),var(--b),var(--c));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.typed{margin-top:14px;font-size:clamp(1.1rem,2.6vw,1.6rem);color:var(--c);min-height:2.2rem;font-weight:600;animation:fadeUp 1s .4s ease both}
+.typed::after{content:"|";margin-left:3px;animation:blink 1s infinite}
+.hero p.intro{margin:18px auto 0;max-width:640px;color:var(--muted);font-size:1.05rem;animation:fadeUp 1s .6s ease both}
+.btns{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .8s ease both}
+.btn{padding:13px 30px;border-radius:40px;font-weight:700;transition:.3s;display:inline-block}
+.btn.primary{background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 10px 30px rgba(124,92,255,.4)}
+.btn.primary:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(255,79,154,.45)}
+.btn.ghost{border:2px solid rgba(255,255,255,.25)}
+.btn.ghost:hover{border-color:var(--c);color:var(--c);transform:translateY(-4px)}
+.stats{margin-top:46px;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s 1s ease both}
+.stats div b{display:block;font-size:2rem;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats div small{color:var(--muted)}
+
+/* ---------- SECTIONS ---------- */
+section{max-width:1200px;margin:auto;padding:80px 24px}
+.section-title{text-align:center;margin-bottom:46px}
+.section-title h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.section-title h2 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-title p{color:var(--muted);margin-top:8px}
+
+/* category quick menu */
+.cat-menu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:50px}
+.cat-menu a{padding:8px 18px;border-radius:30px;background:var(--panel);border:1px solid rgba(255,255,255,.08);font-size:.9rem;color:var(--muted);transition:.3s}
+.cat-menu a:hover{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));transform:translateY(-3px)}
+
+.category{margin-bottom:70px;scroll-margin-top:90px}
+.category-heading{margin-bottom:22px;border-left:5px solid var(--a);padding-left:16px}
+.category-heading h3{font-size:1.6rem}
+.category-heading p{color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.badge{padding:3px 12px;border-radius:20px;font-size:.78rem;font-weight:700;background:rgba(0,212,255,.12);color:var(--c);border:1px solid rgba(0,212,255,.3)}
+.badge.mode{background:rgba(255,79,154,.12);color:var(--b);border-color:rgba(255,79,154,.35)}
+.badge.dpi{background:rgba(124,92,255,.15);color:#a794ff;border-color:rgba(124,92,255,.4)}
+.badge.sw{background:rgba(255,255,255,.07);color:var(--text);border-color:rgba(255,255,255,.2)}
+.spec-note{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--panel);border:1px dashed rgba(255,255,255,.2);font-size:.88rem;color:var(--muted);max-width:760px}
+.spec-note b{color:var(--text)}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--min,220px),1fr));gap:18px}
+.gallery-item{background:var(--panel);border-radius:14px;overflow:hidden;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.06);transition:.4s}
+.gallery-item img,.gallery-item .ph{width:100%;aspect-ratio:var(--ar,4/3);height:auto;object-fit:cover;display:block;transition:.5s}
+.gallery-item .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--muted);font-size:.85rem;background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 12px,transparent 12px 24px)}
+.gallery-item .ph b{font-size:1.6rem;color:var(--a)}
+.gallery-item:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(124,92,255,.3);border-color:var(--a)}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item{overflow:hidden}
+.image-name{padding:10px 14px;font-size:.9rem;font-weight:600;text-align:center}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* ---------- PROJECT GUIDELINES ---------- */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.g-card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;transition:.4s}
+.g-card:hover{transform:translateY(-6px);border-color:var(--a);box-shadow:0 16px 36px rgba(124,92,255,.25)}
+.g-card h4{font-size:1.15rem;margin-bottom:12px;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.g-card ul{list-style:none}
+.g-card li{padding:7px 0 7px 26px;position:relative;color:var(--muted);font-size:.93rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.g-card li:last-child{border-bottom:0}
+.g-card li::before{content:"✔";position:absolute;left:0;color:var(--c)}
+.g-card li b{color:var(--text)}
+.urdu{direction:rtl;text-align:right;margin-top:14px;padding:12px 16px;border-radius:10px;background:rgba(255,79,154,.08);border:1px solid rgba(255,79,154,.25);color:var(--muted);font-size:.95rem}
+
+/* ---------- SIZE GUIDE ---------- */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+table{width:100%;border-collapse:collapse;min-width:620px;background:var(--panel)}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
+th{background:linear-gradient(90deg,var(--a),var(--b));color:#fff}
+tr:hover td{background:rgba(124,92,255,.1)}
+td.grp{background:rgba(124,92,255,.12);font-weight:700;color:var(--c)}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.lightbox.open{display:flex;animation:fadeIn .3s}
+.lightbox img{max-width:95%;max-height:88vh;border-radius:10px;animation:zoom .35s}
+.lightbox .close{position:absolute;top:18px;right:26px;font-size:2.4rem;cursor:pointer;color:#fff}
+
+/* ---------- FOOTER ---------- */
+footer{text-align:center;padding:36px 20px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+footer span{color:var(--b);font-weight:700}
+.top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;z-index:900}
+.top.show{opacity:1;pointer-events:auto}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes blink{50%{opacity:0}}
+@keyframes zoom{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+ .burger{display:block}
+ .nav ul{position:absolute;top:100%;left:0;width:100%;flex-direction:column;background:rgba(11,11,20,.97);padding:10px 24px 20px;gap:4px;max-height:0;overflow:hidden;opacity:0;transition:.4s}
+ .nav ul.open{max-height:520px;opacity:1}
+ .nav ul a{display:block}
+ .gallery{grid-template-columns:repeat(2,1fr)!important;gap:12px}
+ .gallery.wide{grid-template-columns:1fr!important}
+ .shape{opacity:.3}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header>
+ <div class="nav">
+  <a href="index.html" class="logo">Urooj <span>Ansari</span></a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul id="menu">
+   <li><a href="index.html">Home</a></li>
+   <li><a href="about.html">About</a></li>
+   <li><a href="graphics.html" class="active">Graphics</a></li>
+   <li><a href="video-editing.html">Video Editing</a></li>
+   <li><a href="web-development.html">Web Development</a></li>
+   <li><a href="photography.html">Photography</a></li>
+   <li><a href="contactme.html">Contact</a></li>
+  </ul>
+ </div>
+</header>
+
+<!-- HERO / INTRO -->
+<div class="hero" id="top">
+ <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div><div class="shape s4"></div>
+ <div class="hero-content">
+  <div class="tag">Graphic Design Portfolio</div>
+  <h1>I Turn Ideas Into <span>Creative Designs</span></h1>
+  <div class="typed" id="typed"></div>
+  <p class="intro">Graphic designing is the art of telling a story through colors, typography and imagery. I create digital branding, brochures, flyers, social media posts, banners, ads and more that make brands look professional and stand out.</p>
+  <div class="btns">
+   <a href="#gallery" class="btn primary">View My Work</a>
+   <a href="contactme.html" class="btn ghost">Hire Me</a>
+  </div>
+  <div class="stats">
+   <div><b data-count="150">0</b><small>Designs Created</small></div>
+   <div><b data-count="22">0</b><small>Categories</small></div>
+   <div><b data-count="50">0</b><small>Happy Clients</small></div>
+  </div>
+ </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+ <div class="section-title reveal">
+  <h2>My <span>Design Work</span></h2>
+  <p>Browse my projects by category, each with its exact size, color mode and DPI</p>
+ </div>
+ <div class="cat-menu">
+ <a href="#standee">Digital Branding: Standee</a>
+ <a href="#billboard">Digital Branding: Billboard</a>
+ <a href="#poster">Digital Branding: Sign Board / Poster</a>
+ <a href="#bus">Digital Branding: Bus Branding</a>
+ <a href="#car">Digital Branding: Car Branding</a>
+ <a href="#brochure">Brochure Design (Tri Fold)</a>
+ <a href="#flyer">Flyer Design</a>
+ <a href="#post">Social Media Post Design</a>
+ <a href="#ytbanner">YouTube Banner Design</a>
+ <a href="#fbbanner">Facebook Banner Design</a>
+ <a href="#adsquare">Social Media Ads: Square</a>
+ <a href="#adportrait">Social Media Ads: Portrait</a>
+ <a href="#adlandscape">Social Media Ads: Landscape</a>
+ <a href="#logo">Logo Design</a>
+ <a href="#card">Business Card Design</a>
+ <a href="#packaging">Packaging Design</a>
+ <a href="#banner">Web Banner Design</a>
+ <a href="#thumbnail">YouTube Thumbnail Design</a>
+ <a href="#stationery">Stationery Design</a>
+ <a href="#menu">Menu Design</a>
+ <a href="#invitation">Invitation Card Design</a>
+ <a href="#photo">Photo Editing &amp; Manipulation</a>
+ </div>
+
+<!-- ================= 01. DIGITAL BRANDING: STANDEE ================= -->
+<div class="category reveal" id="standee">
+  <div class="category-heading">
+   <h3>01. Digital Branding: Standee</h3><p>Standee designs for events and shops</p>
+   <div class="badges"><span class="badge">📐 2 × 5 feet / 24 × 60 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 100</span><span class="badge sw">🖥 Photoshop</span></div>
+  </div>
+  <div class="gallery" style="--min:170px;--ar:24/60">
+   <div class="gallery-item"><img src="image2/coffee-standy.jpeg" alt="Standee 1"><div class="image-name">Standee 01</div></div>
+   <div class="gallery-item"><img src="image2/kit-snap.PNG" alt="Standee 2"><div class="image-name">Standee 02</div></div>
+   <div class="gallery-item"><img src="image2/snip-coldcoffe.PNG" alt="Standee 3"><div class="image-name">Standee 03</div></div>
+   <div class="gallery-item"><img src="images/standee4.jpg" alt="Standee 4"><div class="image-name">Standee 04</div></div>
+   <div class="gallery-item"><img src="images/standee5.jpg" alt="Standee 5"><div class="image-name">Standee 05</div></div>
+   <div class="gallery-item"><img src="images/standee6.jpg" alt="Standee 6"><div class="image-name">Standee 06</div></div>
+   <div class="gallery-item"><img src="images/standee7.jpg" alt="Standee 7"><div class="image-name">Standee 07</div></div>
+   <div class="gallery-item"><img src="images/standee8.jpg" alt="Standee 8"><div class="image-name">Standee 08</div></div>
+   <div class="gallery-item"><img src="images/standee9.jpg" alt="Standee 9"><div class="image-name">Standee 09</div></div>
+   <div class="gallery-item"><img src="images/standee10.jpg" alt="Standee 10"><div class="image-name">Standee 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 02. DIGITAL BRANDING: BILLBOARD ================= -->
+<div class="category reveal" id="billboard">
+  <div class="category-heading">
+   <h3>02. Digital Branding: Billboard</h3><p>Outdoor advertising and large-format designs</p>
+   <div class="badges"><span class="badge">📐 10 × 5 feet / 120 × 60 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 100</span><span class="badge sw">🖥 Photoshop</span></div>
+  </div>
+  <div class="gallery wide" style="--min:380px;--ar:2/1">
+   <div class="gallery-item"><img src="image2/coffee-billboard.jpeg" alt="Billboard 1"><div class="image-name">Billboard 01</div></div>
+   <div class="gallery-item"><img src="images/billboard2.jpg" alt="Billboard 2"><div class="image-name">Billboard 02</div></div>
+   <div class="gallery-item"><img src="images/billboard3.jpg" alt="Billboard 3"><div class="image-name">Billboard 03</div></div>
+   <div class="gallery-item"><img src="images/billboard4.jpg" alt="Billboard 4"><div class="image-name">Billboard 04</div></div>
+   <div class="gallery-item"><img src="images/billboard5.jpg" alt="Billboard 5"><div class="image-name">Billboard 05</div></div>
+   <div class="gallery-item"><img src="images/billboard6.jpg" alt="Billboard 6"><div class="image-name">Billboard 06</div></div>
+   <div class="gallery-item"><img src="images/billboard7.jpg" alt="Billboard 7"><div class="image-name">Billboard 07</div></div>
+   <div class="gallery-item"><img src="images/billboard8.jpg" alt="Billboard 8"><div class="image-name">Billboard 08</div></div>
+   <div class="gallery-item"><img src="images/billboard9.jpg" alt="Billboard 9"><div class="image-name">Billboard 09</div></div>
+   <div class="gallery-item"><img src="images/billboard10.jpg" alt="Billboard 10"><div class="image-name">Billboard 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 03. DIGITAL BRANDING: SIGN BOARD / POSTER ================= -->
+<div class="category reveal" id="poster">
+  <div class="category-heading">
+   <h3>03. Digital Branding: Sign Board / Poster</h3><p>Creative promotional and advertising posters</p>
+   <div class="badges"><span class="badge">📐 2 × 3 feet / 24 × 36 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 100</span><span class="badge sw">🖥 Photoshop</span></div>
+  </div>
+  <div class="gallery" style="--min:220px;--ar:2/3">
+   <div class="gallery-item"><img src="image2/potrait.jpeg" alt="Poster 1"><div class="image-name">Poster 01</div></div>
+   <div class="gallery-item"><img src="images/poster2.jpg" alt="Poster 2"><div class="image-name">Poster 02</div></div>
+   <div class="gallery-item"><img src="images/poster3.jpg" alt="Poster 3"><div class="image-name">Poster 03</div></div>
+   <div class="gallery-item"><img src="images/poster4.jpg" alt="Poster 4"><div class="image-name">Poster 04</div></div>
+   <div class="gallery-item"><img src="images/poster5.jpg" alt="Poster 5"><div class="image-name">Poster 05</div></div>
+   <div class="gallery-item"><img src="images/poster6.jpg" alt="Poster 6"><div class="image-name">Poster 06</div></div>
+   <div class="gallery-item"><img src="images/poster7.jpg" alt="Poster 7"><div class="image-name">Poster 07</div></div>
+   <div class="gallery-item"><img src="images/poster8.jpg" alt="Poster 8"><div class="image-name">Poster 08</div></div>
+   <div class="gallery-item"><img src="images/poster9.jpg" alt="Poster 9"><div class="image-name">Poster 09</div></div>
+   <div class="gallery-item"><img src="images/poster10.jpg" alt="Poster 10"><div class="image-name">Poster 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 04. DIGITAL BRANDING: BUS BRANDING ================= -->
+<div class="category reveal" id="bus">
+  <div class="category-heading">
+   <h3>04. Digital Branding: Bus Branding</h3><p>Full bus wrap and side branding</p>
+   <div class="badges"><span class="badge">📐 12 × 2.5 feet / 144 × 30 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 100</span><span class="badge sw">🖥 Photoshop</span></div>
+  </div>
+  <div class="gallery wide" style="--min:420px;--ar:144/30">
+   <div class="gallery-item"><img src="images/bus1.jpg" alt="Bus Branding 1"><div class="image-name">Bus Branding 01</div></div>
+   <div class="gallery-item"><img src="images/bus2.jpg" alt="Bus Branding 2"><div class="image-name">Bus Branding 02</div></div>
+   <div class="gallery-item"><img src="images/bus3.jpg" alt="Bus Branding 3"><div class="image-name">Bus Branding 03</div></div>
+   <div class="gallery-item"><img src="images/bus4.jpg" alt="Bus Branding 4"><div class="image-name">Bus Branding 04</div></div>
+   <div class="gallery-item"><img src="images/bus5.jpg" alt="Bus Branding 5"><div class="image-name">Bus Branding 05</div></div>
+   <div class="gallery-item"><img src="images/bus6.jpg" alt="Bus Branding 6"><div class="image-name">Bus Branding 06</div></div>
+   <div class="gallery-item"><img src="images/bus7.jpg" alt="Bus Branding 7"><div class="image-name">Bus Branding 07</div></div>
+   <div class="gallery-item"><img src="images/bus8.jpg" alt="Bus Branding 8"><div class="image-name">Bus Branding 08</div></div>
+   <div class="gallery-item"><img src="images/bus9.jpg" alt="Bus Branding 9"><div class="image-name">Bus Branding 09</div></div>
+   <div class="gallery-item"><img src="images/bus10.jpg" alt="Bus Branding 10"><div class="image-name">Bus Branding 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 05. DIGITAL BRANDING: CAR BRANDING ================= -->
+<div class="category reveal" id="car">
+  <div class="category-heading">
+   <h3>05. Digital Branding: Car Branding</h3><p>Car door and vehicle branding</p>
+   <div class="badges"><span class="badge">📐 2 × 1.5 feet / 24 × 18 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 100</span><span class="badge sw">🖥 Photoshop</span></div>
+  </div>
+  <div class="gallery" style="--min:260px;--ar:4/3">
+   <div class="gallery-item"><img src="image2/coffee-bus1.jpeg" alt="Car Branding 1"><div class="image-name">Car Branding 01</div></div>
+   <div class="gallery-item"><img src="images/car2.jpg" alt="Car Branding 2"><div class="image-name">Car Branding 02</div></div>
+   <div class="gallery-item"><img src="images/car3.jpg" alt="Car Branding 3"><div class="image-name">Car Branding 03</div></div>
+   <div class="gallery-item"><img src="images/car4.jpg" alt="Car Branding 4"><div class="image-name">Car Branding 04</div></div>
+   <div class="gallery-item"><img src="images/car5.jpg" alt="Car Branding 5"><div class="image-name">Car Branding 05</div></div>
+   <div class="gallery-item"><img src="images/car6.jpg" alt="Car Branding 6"><div class="image-name">Car Branding 06</div></div>
+   <div class="gallery-item"><img src="images/car7.jpg" alt="Car Branding 7"><div class="image-name">Car Branding 07</div></div>
+   <div class="gallery-item"><img src="images/car8.jpg" alt="Car Branding 8"><div class="image-name">Car Branding 08</div></div>
+   <div class="gallery-item"><img src="images/car9.jpg" alt="Car Branding 9"><div class="image-name">Car Branding 09</div></div>
+   <div class="gallery-item"><img src="images/car10.jpg" alt="Car Branding 10"><div class="image-name">Car Branding 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 06. BROCHURE DESIGN (TRI FOLD) ================= -->
+<div class="category reveal" id="brochure">
+  <div class="category-heading">
+   <h3>06. Brochure Design (Tri Fold)</h3><p>Tri fold front &amp; back design</p>
+   <div class="badges"><span class="badge">📐 17 × 11 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 300</span><span class="badge sw">🖥 Illustrator</span></div>
+  </div>
+  <div class="gallery" style="--min:340px;--ar:17/11">
+   <div class="gallery-item"><img src="images/brochure1.jpg" alt="Brochure 1"><div class="image-name">Brochure 01</div></div>
+   <div class="gallery-item"><img src="images/brochure2.jpg" alt="Brochure 2"><div class="image-name">Brochure 02</div></div>
+   <div class="gallery-item"><img src="images/brochure3.jpg" alt="Brochure 3"><div class="image-name">Brochure 03</div></div>
+   <div class="gallery-item"><img src="images/brochure4.jpg" alt="Brochure 4"><div class="image-name">Brochure 04</div></div>
+   <div class="gallery-item"><img src="images/brochure5.jpg" alt="Brochure 5"><div class="image-name">Brochure 05</div></div>
+   <div class="gallery-item"><img src="images/brochure6.jpg" alt="Brochure 6"><div class="image-name">Brochure 06</div></div>
+   <div class="gallery-item"><img src="images/brochure7.jpg" alt="Brochure 7"><div class="image-name">Brochure 07</div></div>
+   <div class="gallery-item"><img src="images/brochure8.jpg" alt="Brochure 8"><div class="image-name">Brochure 08</div></div>
+   <div class="gallery-item"><img src="images/brochure9.jpg" alt="Brochure 9"><div class="image-name">Brochure 09</div></div>
+   <div class="gallery-item"><img src="images/brochure10.jpg" alt="Brochure 10"><div class="image-name">Brochure 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 07. FLYER DESIGN ================= -->
+<div class="category reveal" id="flyer">
+  <div class="category-heading">
+   <h3>07. Flyer Design</h3><p>Front design only</p>
+   <div class="badges"><span class="badge">📐 5.5 × 8.5 inches</span><span class="badge mode">🎨 CMYK</span><span class="badge dpi">DPI: 300</span><span class="badge sw">🖥 Illustrator</span></div>
+  </div>
+  <div class="gallery" style="--min:220px;--ar:5.5/8.5">
+   <div class="gallery-item"><img src="image2/flyr.jpeg" alt="Flyer 1"><div class="image-name">Flyer 01</div></div>
+   <div class="gallery-item"><img src="images/flyer2.jpg" alt="Flyer 2"><div class="image-name">Flyer 02</div></div>
+   <div class="gallery-item"><img src="images/flyer3.jpg" alt="Flyer 3"><div class="image-name">Flyer 03</div></div>
+   <div class="gallery-item"><img src="images/flyer4.jpg" alt="Flyer 4"><div class="image-name">Flyer 04</div></div>
+   <div class="gallery-item"><img src="images/flyer5.jpg" alt="Flyer 5"><div class="image-name">Flyer 05</div></div>
+   <div class="gallery-item"><img src="images/flyer6.jpg" alt="Flyer 6"><div class="image-name">Flyer 06</div></div>
+   <div class="gallery-item"><img src="images/flyer7.jpg" alt="Flyer 7"><div class="image-name">Flyer 07</div></div>
+   <div class="gallery-item"><img src="images/flyer8.jpg" alt="Flyer 8"><div class="image-name">Flyer 08</div></div>
+   <div class="gallery-item"><img src="images/flyer9.jpg" alt="Flyer 9"><div class="image-name">Flyer 09</div></div>
+   <div class="gallery-item"><img src="images/flyer10.jpg" alt="Flyer 10"><div class="image-name">Flyer 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 08. SOCIAL MEDIA POST DESIGN ================= -->
+<div class="category reveal" id="post">
+  <div class="category-heading">
+   <h3>08. Social Media Post Design</h3><p>Instagram and Facebook post designs</p>
+   <div class="badges"><span class="badge">📐 1080 × 1350 px</span><span class="badge mode">🎨 RGB</span><span class="badge dpi">DPI: 72</span><span class="badge sw">🖥 Any</span></div>
+  </div>
+  <div class="gallery" style="--min:220px;--ar:1080/1350">
+   <div class="gallery-item"><img src="image2/garnier-facewash.jpeg" alt="Post 1"><div class="image-name">Post 01</div></div>
+   <div class="gallery-item"><img src="image2/double.jpeg" alt="Post 2"><div class="image-name">Post 02</div></div>
+   <div class="gallery-item"><img src="images/instagram3.jpg" alt="Post 3"><div class="image-name">Post 03</div></div>
+   <div class="gallery-item"><img src="images/instagram4.jpg" alt="Post 4"><div class="image-name">Post 04</div></div>
+   <div class="gallery-item"><img src="images/instagram5.jpg" alt="Post 5"><div class="image-name">Post 05</div></div>
+   <div class="gallery-item"><img src="images/instagram6.jpg" alt="Post 6"><div class="image-name">Post 06</div></div>
+   <div class="gallery-item"><img src="images/instagram7.jpg" alt="Post 7"><div class="image-name">Post 07</div></div>
+   <div class="gallery-item"><img src="images/instagram8.jpg" alt="Post 8"><div class="image-name">Post 08</div></div>
+   <div class="gallery-item"><img src="images/instagram9.jpg" alt="Post 9"><div class="image-name">Post 09</div></div>
+   <div class="gallery-item"><img src="images/instagram10.jpg" alt="Post 10"><div class="image-name">Post 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 09. YOUTUBE BANNER DESIGN ================= -->
+<div class="category reveal" id="ytbanner">
+  <div class="category-heading">
+   <h3>09. YouTube Banner Design</h3><p>Channel art for all devices</p>
+   <div class="badges"><span class="badge">📐 Frame / File: 2560 × 1440 px</span><span class="badge mode">🎨 RGB</span><span class="badge dpi">DPI: 72</span><span class="badge sw">🖥 Any</span></div>
+   <div class="spec-note"><b>Frame / File Size:</b> 2560 × 1440 px<br><b>All Devices Size / Safe Zone:</b> 1235 × 338 px<br><b>Desktop Size:</b> 2560 × 338 px</div>
+  </div>
+  <div class="gallery" style="--min:340px;--ar:16/9">
+   <div class="gallery-item"><img src="image2/.jpeg" alt="YouTube Banner 1"><div class="image-name">YouTube Banner 01</div></div>
+   <div class="gallery-item"><img src="images/youtube2.jpg" alt="YouTube Banner 2"><div class="image-name">YouTube Banner 02</div></div>
+   <div class="gallery-item"><img src="images/youtube3.jpg" alt="YouTube Banner 3"><div class="image-name">YouTube Banner 03</div></div>
+   <div class="gallery-item"><img src="images/youtube4.jpg" alt="YouTube Banner 4"><div class="image-name">YouTube Banner 04</div></div>
+   <div class="gallery-item"><img src="images/youtube5.jpg" alt="YouTube Banner 5"><div class="image-name">YouTube Banner 05</div></div>
+   <div class="gallery-item"><img src="images/youtube6.jpg" alt="YouTube Banner 6"><div class="image-name">YouTube Banner 06</div></div>
+   <div class="gallery-item"><img src="images/youtube7.jpg" alt="YouTube Banner 7"><div class="image-name">YouTube Banner 07</div></div>
+   <div class="gallery-item"><img src="images/youtube8.jpg" alt="YouTube Banner 8"><div class="image-name">YouTube Banner 08</div></div>
+   <div class="gallery-item"><img src="images/youtube9.jpg" alt="YouTube Banner 9"><div class="image-name">YouTube Banner 09</div></div>
+   <div class="gallery-item"><img src="images/youtube10.jpg" alt="YouTube Banner 10"><div class="image-name">YouTube Banner 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 10. FACEBOOK BANNER DESIGN ================= -->
+<div class="category reveal" id="fbbanner">
+  <div class="category-heading">
+   <h3>10. Facebook Banner Design</h3><p>Facebook cover designs</p>
+   <div class="badges"><span class="badge">📐 851 × 315 px</span><span class="badge mode">🎨 RGB</span><span class="badge dpi">DPI: 72</span><span class="badge sw">🖥 Any</span></div>
+  </div>
+  <div class="gallery wide" style="--min:380px;--ar:851/315">
+   <div class="gallery-item"><img src="images/facebook1.jpg" alt="Facebook Banner 1"><div class="image-name">Facebook Banner 01</div></div>
+   <div class="gallery-item"><img src="images/facebook2.jpg" alt="Facebook Banner 2"><div class="image-name">Facebook Banner 02</div></div>
+   <div class="gallery-item"><img src="images/facebook3.jpg" alt="Facebook Banner 3"><div class="image-name">Facebook Banner 03</div></div>
+   <div class="gallery-item"><img src="images/facebook4.jpg" alt="Facebook Banner 4"><div class="image-name">Facebook Banner 04</div></div>
+   <div class="gallery-item"><img src="images/facebook5.jpg" alt="Facebook Banner 5"><div class="image-name">Facebook Banner 05</div></div>
+   <div class="gallery-item"><img src="images/facebook6.jpg" alt="Facebook Banner 6"><div class="image-name">Facebook Banner 06</div></div>
+   <div class="gallery-item"><img src="images/facebook7.jpg" alt="Facebook Banner 7"><div class="image-name">Facebook Banner 07</div></div>
+   <div class="gallery-item"><img src="images/facebook8.jpg" alt="Facebook Banner 8"><div class="image-name">Facebook Banner 08</div></div>
+   <div class="gallery-item"><img src="images/facebook9.jpg" alt="Facebook Banner 9"><div class="image-name">Facebook Banner 09</div></div>
+   <div class="gallery-item"><img src="images/facebook10.jpg" alt="Facebook Banner 10"><div class="image-name">Facebook Banner 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 11. SOCIAL MEDIA ADS: SQUARE ================= -->
+<div class="category reveal" id="adsquare">
+  <div class="category-heading">
+   <h3>11. Social Media Ads: Square</h3><p>2 separate square ad designs</p>
+   <div class="badges"><span class="badge">📐 1080 × 1080 px</span><span class="badge mode">🎨 RGB</span><span class="badge dpi">DPI: 72</span><span class="badge sw">🖥 Any</span></div>
+  </div>
+  <div class="gallery" style="--min:260px;--ar:1/1">
+   <div class="gallery-item"><img src="image2/orange-juice.jpg" alt="Square Ad 1"><div class="image-name">Square Ad 01</div></div>
+   <div class="gallery-item"><img src="image2/facewash-post.jpeg" alt="Square Ad 2"><div class="image-name">Square Ad 02</div></div>
+      <div class="gallery-item"><img src="image2/travel-post.jpeg" alt="Square Ad 3"><div class="image-name">Square Ad 03</div></div>
+      <div class="gallery-item"><img src="image2/shoesadd1.jpeg" alt="Square Ad 4"><div class="image-name">Square Ad 04</div></div>
+
+  </div>
+</div>
+
+
+<!-- ================= 12. SOCIAL MEDIA ADS: PORTRAIT ================= -->
+<div class="category reveal" id="adportrait">
+  <div class="category-heading">
+   <h3>12. Social Media Ads: Portrait</h3><p>Same designs as the square ads, in portrait size</p>
+   <div class="badges"><span class="badge">📐 1080 × 1350 px</span><span class="badge mode">🎨 RGB</span><span class="badge dpi">DPI: 72</span><span class="badge sw">🖥 Any</span></div>
+  </div>
+  <div class="gallery" style="--min:240px;--ar:1080/1350">
+   <div class="gallery-item"><img src="image2/social-shadow.jpeg" alt="Portrait Ad 1"><div class="image-name">Portrait Ad 01</div></div>
+   <div class="gallery-item"><img src="images/adportrait2.jpg" alt="Portrait Ad 2"><div class="image-name">Portrait Ad 02</div></div>
+   
+  </div>
+</div>
+
+
+<!-- ================= 13. SOCIAL MEDIA ADS: LANDSCAPE ================= -->
+<div class="category reveal" id="adlandscape">
+  <div class="category-heading">
+   <h3>13. Social Media Ads: Landscape</h3><p>Same designs as the square ads, in landscape size</p>
+   <div class="badges"><span class="badge">📐 1080 × 566 px</span><span class="badge mode">🎨 RGB</span><span class="badge dpi">DPI: 72</span><span class="badge sw">🖥 Any</span></div>
+  </div>
+  <div class="gallery wide" style="--min:380px;--ar:1080/566">
+   <div class="gallery-item"><img src="image2/land-add.jpeg" alt="Landscape Ad 1"><div class="image-name">Landscape Ad 01</div></div>
+   <div class="gallery-item"><img src="mages/adlandscape2.jpg" alt="Landscape Ad 2"><div class="image-name">Landscape Ad 02</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 14. LOGO DESIGN ================= -->
+<div class="category reveal" id="logo">
+  <div class="category-heading">
+   <h3>14. Logo Design</h3><p>Modern and creative brand logos</p>
+   <div class="badges"><span class="badge">📐 Custom / Square</span><span class="badge dpi">DPI: 300 / Vector</span></div>
+  </div>
+  <div class="gallery" style="--min:220px;--ar:1/1">
+   <div class="gallery-item"><img src="image2/logo-coffee23.PNG" alt="Logo 1"><div class="image-name">Logo 01</div></div>
+   <div class="gallery-item"><img src="images/logo2.jpg" alt="Logo 2"><div class="image-name">Logo 02</div></div>
+   <div class="gallery-item"><img src="images/logo3.jpg" alt="Logo 3"><div class="image-name">Logo 03</div></div>
+   <div class="gallery-item"><img src="images/logo4.jpg" alt="Logo 4"><div class="image-name">Logo 04</div></div>
+   <div class="gallery-item"><img src="images/logo5.jpg" alt="Logo 5"><div class="image-name">Logo 05</div></div>
+   <div class="gallery-item"><img src="images/logo6.jpg" alt="Logo 6"><div class="image-name">Logo 06</div></div>
+   <div class="gallery-item"><img src="images/logo7.jpg" alt="Logo 7"><div class="image-name">Logo 07</div></div>
+   <div class="gallery-item"><img src="images/logo8.jpg" alt="Logo 8"><div class="image-name">Logo 08</div></div>
+   <div class="gallery-item"><img src="images/logo9.jpg" alt="Logo 9"><div class="image-name">Logo 09</div></div>
+   <div class="gallery-item"><img src="images/logo10.jpg" alt="Logo 10"><div class="image-name">Logo 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 15. BUSINESS CARD DESIGN ================= -->
+<div class="category reveal" id="card">
+  <div class="category-heading">
+   <h3>15. Business Card Design</h3><p>Professional visiting cards</p>
+   <div class="badges"><span class="badge">📐 3.5 × 2 inches</span><span class="badge dpi">DPI: 300</span></div>
+  </div>
+  <div class="gallery" style="--min:260px;--ar:7/4">
+   <div class="gallery-item"><img src="images/card1.jpg" alt="Business Card 1"><div class="image-name">Business Card 01</div></div>
+   <div class="gallery-item"><img src="images/card2.jpg" alt="Business Card 2"><div class="image-name">Business Card 02</div></div>
+   <div class="gallery-item"><img src="images/card3.jpg" alt="Business Card 3"><div class="image-name">Business Card 03</div></div>
+   <div class="gallery-item"><img src="images/card4.jpg" alt="Business Card 4"><div class="image-name">Business Card 04</div></div>
+   <div class="gallery-item"><img src="images/card5.jpg" alt="Business Card 5"><div class="image-name">Business Card 05</div></div>
+   <div class="gallery-item"><img src="images/card6.jpg" alt="Business Card 6"><div class="image-name">Business Card 06</div></div>
+   <div class="gallery-item"><img src="images/card7.jpg" alt="Business Card 7"><div class="image-name">Business Card 07</div></div>
+   <div class="gallery-item"><img src="images/card8.jpg" alt="Business Card 8"><div class="image-name">Business Card 08</div></div>
+   <div class="gallery-item"><img src="images/card9.jpg" alt="Business Card 9"><div class="image-name">Business Card 09</div></div>
+   <div class="gallery-item"><img src="images/card10.jpg" alt="Business Card 10"><div class="image-name">Business Card 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 16. PACKAGING DESIGN ================= -->
+<div class="category reveal" id="packaging">
+  <div class="category-heading">
+   <h3>16. Packaging Design</h3><p>Product and box packaging designs</p>
+   <div class="badges"><span class="badge">📐 Custom dimensions</span><span class="badge dpi">DPI: 300</span></div>
+  </div>
+  <div class="gallery" style="--min:240px;--ar:4/3">
+   <div class="gallery-item"><img src="images/packaging1.jpg" alt="Packaging 1"><div class="image-name">Packaging 01</div></div>
+   <div class="gallery-item"><img src="images/packaging2.jpg" alt="Packaging 2"><div class="image-name">Packaging 02</div></div>
+   <div class="gallery-item"><img src="images/packaging3.jpg" alt="Packaging 3"><div class="image-name">Packaging 03</div></div>
+   <div class="gallery-item"><img src="images/packaging4.jpg" alt="Packaging 4"><div class="image-name">Packaging 04</div></div>
+   <div class="gallery-item"><img src="images/packaging5.jpg" alt="Packaging 5"><div class="image-name">Packaging 05</div></div>
+   <div class="gallery-item"><img src="images/packaging6.jpg" alt="Packaging 6"><div class="image-name">Packaging 06</div></div>
+   <div class="gallery-item"><img src="images/packaging7.jpg" alt="Packaging 7"><div class="image-name">Packaging 07</div></div>
+   <div class="gallery-item"><img src="images/packaging8.jpg" alt="Packaging 8"><div class="image-name">Packaging 08</div></div>
+   <div class="gallery-item"><img src="images/packaging9.jpg" alt="Packaging 9"><div class="image-name">Packaging 09</div></div>
+   <div class="gallery-item"><img src="images/packaging10.jpg" alt="Packaging 10"><div class="image-name">Packaging 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 17. WEB BANNER DESIGN ================= -->
+<div class="category reveal" id="banner">
+  <div class="category-heading">
+   <h3>17. Web Banner Design</h3><p>Web banners and promotional designs</p>
+   <div class="badges"><span class="badge">📐 1920 × 600 px</span><span class="badge dpi">DPI: 72</span></div>
+  </div>
+  <div class="gallery wide" style="--min:380px;--ar:16/5">
+   <div class="gallery-item"><img src="images/banner1.jpg" alt="Banner 1"><div class="image-name">Banner 01</div></div>
+   <div class="gallery-item"><img src="images/banner2.jpg" alt="Banner 2"><div class="image-name">Banner 02</div></div>
+   <div class="gallery-item"><img src="images/banner3.jpg" alt="Banner 3"><div class="image-name">Banner 03</div></div>
+   <div class="gallery-item"><img src="images/banner4.jpg" alt="Banner 4"><div class="image-name">Banner 04</div></div>
+   <div class="gallery-item"><img src="images/banner5.jpg" alt="Banner 5"><div class="image-name">Banner 05</div></div>
+   <div class="gallery-item"><img src="images/banner6.jpg" alt="Banner 6"><div class="image-name">Banner 06</div></div>
+   <div class="gallery-item"><img src="images/banner7.jpg" alt="Banner 7"><div class="image-name">Banner 07</div></div>
+   <div class="gallery-item"><img src="images/banner8.jpg" alt="Banner 8"><div class="image-name">Banner 08</div></div>
+   <div class="gallery-item"><img src="images/banner9.jpg" alt="Banner 9"><div class="image-name">Banner 09</div></div>
+   <div class="gallery-item"><img src="images/banner10.jpg" alt="Banner 10"><div class="image-name">Banner 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 18. YOUTUBE THUMBNAIL DESIGN ================= -->
+<div class="category reveal" id="thumbnail">
+  <div class="category-heading">
+   <h3>18. YouTube Thumbnail Design</h3><p>Creative video thumbnails and cover designs</p>
+   <div class="badges"><span class="badge">📐 1280 × 720 px</span><span class="badge dpi">DPI: 72</span></div>
+  </div>
+  <div class="gallery" style="--min:300px;--ar:16/9">
+   <div class="gallery-item"><img src="images/thumbnail1.jpg" alt="Thumbnail 1"><div class="image-name">Thumbnail 01</div></div>
+   <div class="gallery-item"><img src="images/thumbnail2.jpg" alt="Thumbnail 2"><div class="image-name">Thumbnail 02</div></div>
+   <div class="gallery-item"><img src="images/thumbnail3.jpg" alt="Thumbnail 3"><div class="image-name">Thumbnail 03</div></div>
+   <div class="gallery-item"><img src="images/thumbnail4.jpg" alt="Thumbnail 4"><div class="image-name">Thumbnail 04</div></div>
+   <div class="gallery-item"><img src="images/thumbnail5.jpg" alt="Thumbnail 5"><div class="image-name">Thumbnail 05</div></div>
+   <div class="gallery-item"><img src="images/thumbnail6.jpg" alt="Thumbnail 6"><div class="image-name">Thumbnail 06</div></div>
+   <div class="gallery-item"><img src="images/thumbnail7.jpg" alt="Thumbnail 7"><div class="image-name">Thumbnail 07</div></div>
+   <div class="gallery-item"><img src="images/thumbnail8.jpg" alt="Thumbnail 8"><div class="image-name">Thumbnail 08</div></div>
+   <div class="gallery-item"><img src="images/thumbnail9.jpg" alt="Thumbnail 9"><div class="image-name">Thumbnail 09</div></div>
+   <div class="gallery-item"><img src="images/thumbnail10.jpg" alt="Thumbnail 10"><div class="image-name">Thumbnail 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 19. STATIONERY DESIGN ================= -->
+<div class="category reveal" id="stationery">
+  <div class="category-heading">
+   <h3>19. Stationery Design</h3><p>Letterheads, envelopes, folders and brand stationery</p>
+   <div class="badges"></div>
+  </div>
+  <div class="gallery" style="--min:240px;--ar:4/3">
+   <div class="gallery-item"><img src="images/stationery1.jpg" alt="Stationery 1"><div class="image-name">Stationery 01</div></div>
+   <div class="gallery-item"><img src="images/stationery2.jpg" alt="Stationery 2"><div class="image-name">Stationery 02</div></div>
+   <div class="gallery-item"><img src="images/stationery3.jpg" alt="Stationery 3"><div class="image-name">Stationery 03</div></div>
+   <div class="gallery-item"><img src="images/stationery4.jpg" alt="Stationery 4"><div class="image-name">Stationery 04</div></div>
+   <div class="gallery-item"><img src="images/stationery5.jpg" alt="Stationery 5"><div class="image-name">Stationery 05</div></div>
+   <div class="gallery-item"><img src="images/stationery6.jpg" alt="Stationery 6"><div class="image-name">Stationery 06</div></div>
+   <div class="gallery-item"><img src="images/stationery7.jpg" alt="Stationery 7"><div class="image-name">Stationery 07</div></div>
+   <div class="gallery-item"><img src="images/stationery8.jpg" alt="Stationery 8"><div class="image-name">Stationery 08</div></div>
+   <div class="gallery-item"><img src="images/stationery9.jpg" alt="Stationery 9"><div class="image-name">Stationery 09</div></div>
+   <div class="gallery-item"><img src="images/stationery10.jpg" alt="Stationery 10"><div class="image-name">Stationery 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 20. MENU DESIGN ================= -->
+<div class="category reveal" id="menu">
+  <div class="category-heading">
+   <h3>20. Menu Design</h3><p>Restaurant, cafe and food menu designs</p>
+   <div class="badges"><span class="badge">📐 8.5 × 11 inches</span><span class="badge dpi">DPI: 300</span></div>
+  </div>
+  <div class="gallery" style="--min:220px;--ar:8.5/11">
+   <div class="gallery-item"><img src="images/menu1.jpg" alt="Menu 1"><div class="image-name">Menu 01</div></div>
+   <div class="gallery-item"><img src="images/menu2.jpg" alt="Menu 2"><div class="image-name">Menu 02</div></div>
+   <div class="gallery-item"><img src="images/menu3.jpg" alt="Menu 3"><div class="image-name">Menu 03</div></div>
+   <div class="gallery-item"><img src="images/menu4.jpg" alt="Menu 4"><div class="image-name">Menu 04</div></div>
+   <div class="gallery-item"><img src="images/menu5.jpg" alt="Menu 5"><div class="image-name">Menu 05</div></div>
+   <div class="gallery-item"><img src="images/menu6.jpg" alt="Menu 6"><div class="image-name">Menu 06</div></div>
+   <div class="gallery-item"><img src="images/menu7.jpg" alt="Menu 7"><div class="image-name">Menu 07</div></div>
+   <div class="gallery-item"><img src="images/menu8.jpg" alt="Menu 8"><div class="image-name">Menu 08</div></div>
+   <div class="gallery-item"><img src="images/menu9.jpg" alt="Menu 9"><div class="image-name">Menu 09</div></div>
+   <div class="gallery-item"><img src="images/menu10.jpg" alt="Menu 10"><div class="image-name">Menu 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 21. INVITATION CARD DESIGN ================= -->
+<div class="category reveal" id="invitation">
+  <div class="category-heading">
+   <h3>21. Invitation Card Design</h3><p>Wedding, event and special occasion invitations</p>
+   <div class="badges"><span class="badge">📐 5 × 7 inches</span><span class="badge dpi">DPI: 300</span></div>
+  </div>
+  <div class="gallery" style="--min:220px;--ar:5/7">
+   <div class="gallery-item"><img src="images/invitation1.jpg" alt="Invitation 1"><div class="image-name">Invitation 01</div></div>
+   <div class="gallery-item"><img src="images/invitation2.jpg" alt="Invitation 2"><div class="image-name">Invitation 02</div></div>
+   <div class="gallery-item"><img src="images/invitation3.jpg" alt="Invitation 3"><div class="image-name">Invitation 03</div></div>
+   <div class="gallery-item"><img src="images/invitation4.jpg" alt="Invitation 4"><div class="image-name">Invitation 04</div></div>
+   <div class="gallery-item"><img src="images/invitation5.jpg" alt="Invitation 5"><div class="image-name">Invitation 05</div></div>
+   <div class="gallery-item"><img src="images/invitation6.jpg" alt="Invitation 6"><div class="image-name">Invitation 06</div></div>
+   <div class="gallery-item"><img src="images/invitation7.jpg" alt="Invitation 7"><div class="image-name">Invitation 07</div></div>
+   <div class="gallery-item"><img src="images/invitation8.jpg" alt="Invitation 8"><div class="image-name">Invitation 08</div></div>
+   <div class="gallery-item"><img src="images/invitation9.jpg" alt="Invitation 9"><div class="image-name">Invitation 09</div></div>
+   <div class="gallery-item"><img src="images/invitation10.jpg" alt="Invitation 10"><div class="image-name">Invitation 10</div></div>
+  </div>
+</div>
+
+
+<!-- ================= 22. PHOTO EDITING &AMP; MANIPULATION ================= -->
+<div class="category reveal" id="photo">
+  <div class="category-heading">
+   <h3>22. Photo Editing &amp; Manipulation</h3><p>Retouching, creative editing and image manipulation</p>
+   <div class="badges"></div>
+  </div>
+  <div class="gallery" style="--min:240px;--ar:4/3">
+   <div class="gallery-item"><img src="images/photo1.jpg" alt="Photo Editing 1"><div class="image-name">Photo Editing 01</div></div>
+   <div class="gallery-item"><img src="images/photo2.jpg" alt="Photo Editing 2"><div class="image-name">Photo Editing 02</div></div>
+   <div class="gallery-item"><img src="images/photo3.jpg" alt="Photo Editing 3"><div class="image-name">Photo Editing 03</div></div>
+   <div class="gallery-item"><img src="images/photo4.jpg" alt="Photo Editing 4"><div class="image-name">Photo Editing 04</div></div>
+   <div class="gallery-item"><img src="images/photo5.jpg" alt="Photo Editing 5"><div class="image-name">Photo Editing 05</div></div>
+   <div class="gallery-item"><img src="images/photo6.jpg" alt="Photo Editing 6"><div class="image-name">Photo Editing 06</div></div>
+   <div class="gallery-item"><img src="images/photo7.jpg" alt="Photo Editing 7"><div class="image-name">Photo Editing 07</div></div>
+   <div class="gallery-item"><img src="images/photo8.jpg" alt="Photo Editing 8"><div class="image-name">Photo Editing 08</div></div>
+   <div class="gallery-item"><img src="images/photo9.jpg" alt="Photo Editing 9"><div class="image-name">Photo Editing 09</div></div>
+   <div class="gallery-item"><img src="images/photo10.jpg" alt="Photo Editing 10"><div class="image-name">Photo Editing 10</div></div>
+  </div>
+</div>
+
+</section>
+
+<!-- PROJECT GUIDELINES -->
+<section>
+ <div class="section-title reveal">
+  <h2>Project <span>Guidelines</span></h2>
+  <p>Important notes for design and submission</p>
+ </div>
+ <div class="guide-grid">
+  <div class="g-card reveal">
+   <h4>Recommended Software</h4>
+   <ul>
+    <li><b>Digital Branding:</b> Adobe Photoshop</li>
+    <li><b>Brochure &amp; Flyer:</b> Adobe Illustrator</li>
+    <li><b>YouTube, Facebook &amp; Social Media Ads:</b> Any software</li>
+   </ul>
+  </div>
+  <div class="g-card reveal">
+   <h4>Work Process</h4>
+   <ul>
+    <li>First design all the given tasks, then create the mockups.</li>
+    <li>In Social Media Ads, design 2 separate designs of each size.</li>
+    <li>For a new product (other than the midterm project), design Logo &amp; Stationery as well.</li>
+    <li>Detailed guidelines are shared in the WhatsApp group.</li>
+   </ul>
+  </div>
+  <div class="g-card reveal">
+   <h4>Submission</h4>
+   <ul>
+    <li>Submit the original files of the project with JPEG files.</li>
+    <li>Also submit the Mockup JPEG files.</li>
+    <li>Put all files in one folder and submit it as a zip file.</li>
+   </ul>
+  </div>
+ </div>
+ <div class="urdu reveal">نوٹ: سائز کو سمجھنے اور ڈیزائن کو بنانے کے لیے (YouTube اور Facebook Banner کی) سیمپل تصاویر منسلک ہیں۔</div>
+</section>
+
+<!-- DESIGN SIZES -->
+<section class="size-guide">
+ <div class="section-title reveal">
+  <h2>Graphic Design <span>Size Guide</span></h2>
+  <p>Standard sizes, color modes and DPI for each design category</p>
+ </div>
+ <div class="table-wrap reveal">
+  <table>
+   <tr><th>Design Category</th><th>Size</th><th>Color Mode</th><th>DPI</th></tr>
+
+   <tr><td class="grp" colspan="4">Digital Branding</td></tr>
+   <tr><td>Standee</td><td>2 × 5 feet / 24 × 60 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Billboard</td><td>10 × 5 feet / 120 × 60 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Sign Board / Poster</td><td>2 × 3 feet / 24 × 36 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Bus Branding</td><td>12 × 2.5 feet / 144 × 30 inches</td><td>CMYK</td><td>100</td></tr>
+   <tr><td>Car Branding</td><td>2 × 1.5 feet / 24 × 18 inches</td><td>CMYK</td><td>100</td></tr>
+
+   <tr><td class="grp" colspan="4">Print Design</td></tr>
+   <tr><td>Brochure (Tri Fold, Front &amp; Back)</td><td>17 × 11 inches</td><td>CMYK</td><td>300</td></tr>
+   <tr><td>Flyer (Front Design Only)</td><td>5.5 × 8.5 inches</td><td>CMYK</td><td>300</td></tr>
+
+   <tr><td class="grp" colspan="4">Social Media &amp; Banners</td></tr>
+   <tr><td>Social Media Post</td><td>1080 × 1350 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>YouTube Banner (Frame / File Size)</td><td>2560 × 1440 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>YouTube Banner (All Devices Safe Zone)</td><td>1235 × 338 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>YouTube Banner (Desktop Size)</td><td>2560 × 338 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>Facebook Banner</td><td>851 × 315 px</td><td>RGB</td><td>72</td></tr>
+
+   <tr><td class="grp" colspan="4">Social Media Ads (2 separate designs of each size)</td></tr>
+   <tr><td>Ads Square</td><td>1080 × 1080 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>Ads Portrait (same design as square)</td><td>1080 × 1350 px</td><td>RGB</td><td>72</td></tr>
+   <tr><td>Ads Landscape (same design as square)</td><td>1080 × 566 px</td><td>RGB</td><td>72</td></tr>
+
+   <tr><td class="grp" colspan="4">Other Designs</td></tr>
+   <tr><td>Logo</td><td>Custom / Square</td><td>—</td><td>300 / Vector</td></tr>
+   <tr><td>Instagram Story</td><td>1080 × 1920 px</td><td>—</td><td>72–150</td></tr>
+   <tr><td>Facebook Post</td><td>1200 × 1200 px</td><td>—</td><td>72</td></tr>
+   <tr><td>YouTube Thumbnail</td><td>1280 × 720 px</td><td>—</td><td>72</td></tr>
+   <tr><td>Business Card</td><td>3.5 × 2 inches</td><td>—</td><td>300</td></tr>
+   <tr><td>Packaging</td><td>Custom dimensions</td><td>—</td><td>300</td></tr>
+   <tr><td>Web Banner</td><td>1920 × 600 px</td><td>—</td><td>72</td></tr>
+   <tr><td>Invitation Card</td><td>5 × 7 inches</td><td>—</td><td>300</td></tr>
+   <tr><td>Menu Design</td><td>8.5 × 11 inches</td><td>—</td><td>300</td></tr>
+  </table>
+ </div>
+</section>
+
+<footer>
+ <p>© 2026 <span>Urooj Ansari</span> | Graphic Design Portfolio</p>
+ <p>Creativity • Design • Innovation</p>
+</footer>
+
+<div class="lightbox" id="lightbox"><span class="close" id="closeLb">&times;</span><img id="lbImg" alt=""></div>
+<a href="#top" class="top" id="toTop">↑</a>
+
+<script>
+/* Agar image nahi mili to "Add design" ka box dikhao */
+document.querySelectorAll('.gallery-item img').forEach(img=>{
+  const bad=()=>{const d=document.createElement('div');d.className='ph';d.innerHTML='<b>+</b>Add design';img.replaceWith(d)};
+  img.addEventListener('error',bad);
+  if(img.complete&&img.naturalWidth===0)bad();
+});
+
+/* ===== Mobile menu ===== */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+
+/* ===== Typing effect ===== */
+const words=["Digital Branding","Brochures & Flyers","Social Media Posts","YouTube & Facebook Banners","Social Media Ads"];
+let w=0,ch=0,del=false;const typed=document.getElementById('typed');
+(function type(){
+  const word=words[w];
+  typed.textContent=del?word.slice(0,--ch):word.slice(0,++ch);
+  let speed=del?50:110;
+  if(!del&&ch===word.length){speed=1500;del=true}
+  else if(del&&ch===0){del=false;w=(w+1)%words.length;speed=400}
+  setTimeout(type,speed);
+})();
+
+/* ===== Scroll reveal ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== Counter ===== */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const t=+el.dataset.count;let n=0;const step=Math.max(1,Math.ceil(t/60));
+  const timer=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(timer)}el.textContent=n+'+'},30);
+});
+
+/* ===== Lightbox ===== */
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+document.addEventListener('click',e=>{
+  const item=e.target.closest('.gallery-item');
+  const img=item&&item.querySelector('img');
+  if(img){lbImg.src=img.src;lb.classList.add('open')}
+});
+lb.addEventListener('click',e=>{if(e.target!==lbImg)lb.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+
+/* ===== Back to top ===== */
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>500));
+</script>
+</body>
+</html>
